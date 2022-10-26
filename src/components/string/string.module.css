@@ -1,0 +1,21 @@
+.string {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+  margin: 0 auto;
+}
+
+.string__form {
+  display: flex;
+  gap: 12px;
+  max-width: 522px;
+}
+
+.string__lettersContainer {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

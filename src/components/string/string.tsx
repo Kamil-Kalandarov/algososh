@@ -18,19 +18,26 @@ export const StringComponent: FC = () => {
     setValue(value)
   }
 
-   /* превращаем результат отпарвки данных из инпута в массив */
-   const setResultAsArray = (inputValue: string) => {
-    const lettersArray = inputValue.split('')
-    console.log(lettersArray)
+   /* развернуть слово */
+   const reverseResult = (inputValue: string) => {
+    let lettersArray = inputValue.split(''), left = 0, right = lettersArray.length - 1
+    setResult(lettersArray)
+    while (left < right) {
+      let temp = lettersArray[left]
+      lettersArray[left] = lettersArray[right]
+      lettersArray[right] = temp
+      ++left; --right
+    }
     setResult(lettersArray)
   }
 
   /* добавление преобразованного результата инпута в массив */
   const addLetters = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
-    setResultAsArray(inputValue)
+    reverseResult(inputValue)
     setValue('')
   }
+ 
 
   /* рендер букв */
   const lettersElements = result.map((letter: string, index: number) => {

@@ -4,6 +4,9 @@ import { Button } from "../ui/button/button";
 import { Input } from "../ui/input/input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Circle } from "../ui/circle/circle";
+import { TCircle } from "../../types/dataTypes";
+import { ElementStates } from "../../types/element-states";
+
 
 export const StringComponent: FC = () => {
   /* стейт инпута */
@@ -18,35 +21,43 @@ export const StringComponent: FC = () => {
     setValue(value)
   }
 
-   /* развернуть слово */
-   const reverseResult = (inputValue: string) => {
-    let lettersArray = inputValue.split(''), left = 0, right = lettersArray.length - 1
-    setResult(lettersArray)
-    while (left < right) {
-      let temp = lettersArray[left]
-      lettersArray[left] = lettersArray[right]
-      lettersArray[right] = temp
-      ++left; --right
+  const swap = (arr: any[], firstIndex: number, secondIndex: number): void => {
+    const temp = arr[firstIndex];
+    arr[firstIndex] = arr[secondIndex];
+    arr[secondIndex] = temp;
+  };
+
+  const reversArray = (string: string) => {
+    debugger
+    const lettersArray = string.split('')
+    let leftSide = 0
+    let rightSide = lettersArray.length
+    while (leftSide < rightSide) {
+      swap(lettersArray, leftSide, rightSide)
+      leftSide ++
+      rightSide --
     }
-    setResult(lettersArray)
+    setResult(lettersArray) 
   }
 
   /* добавление преобразованного результата инпута в массив */
   const addLetters = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
-    reverseResult(inputValue)
+    reversArray(inputValue)
     setValue('')
   }
- 
 
+  console.log(result);
+  
+ 
   /* рендер букв */
-  const lettersElements = result.map((letter: string, index: number) => {
+  const lettersElements = result.map((index: number, letter: string) => {
     return (
       <li key={index}>
-        <Circle letter={letter}/>
+        <Circle letter={letter} />
       </li>
     )
-  })
+  }) 
 
   return (
     <SolutionLayout title="Строка">

@@ -9,29 +9,41 @@ import { ElementStates } from "../../types/element-states";
 
 export const FibonacciPage: FC = () => {
   /* стейт инпута */
-  const [inputValue, setValue] = useState<string>('')
+  const [inputValue, setValue] = useState<number>(0)
   /* результат отпарвки ипута */
-  const [result, setResult] = useState<TCircle[]>([])
+  const [result, setResult] = useState<number[]>([])
 
   /* изменение значений инпута */
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value
+    const value = parseFloat(e.currentTarget.value)
     setValue(value)
   }
 
-  /* const fibonacciCycle = (number: number) => {
-    const fibonacciArray: number[] = []
-    for(let i = 0; i < )
-  } */
-
+  const fibonacciCycle = (number: number) => {
+    const fibonacciArray: number[] = [0, 1]
+    for(let i = 2; i <= number; i ++) {
+      fibonacciArray.push(fibonacciArray[i - 2] + fibonacciArray[i - 1])
+      }
+      setResult(fibonacciArray)
+    }
+    
   /* добавление преобразованного результата инпута в массив */
   const addNumbers = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
-    setValue('')
+    fibonacciCycle(inputValue)
+    setValue(0)
   }
 
    console.log(result);
    
+  /* рендер букв */
+  const numbersElements = result.map((number: TCircle, index: number) => {
+    return (
+      <li key={index}>
+        <Circle state={number.state} number={number.value} index={index}/>
+      </li>
+    )
+  }) 
 
   return (
     <SolutionLayout title="Последовательность Фибоначчи">
@@ -49,7 +61,7 @@ export const FibonacciPage: FC = () => {
           />
         </form>
         <ul className={styles.fibonacci__lnumbersContainer}>
-          {/* {numbersElements} */}
+          {numbersElements}
         </ul>
       </div>
     </SolutionLayout>

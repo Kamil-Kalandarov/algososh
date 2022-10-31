@@ -15,18 +15,19 @@ export const StringComponent: FC = () => {
   const [result, setResult] = useState<TCircle[]>([])
 
   /* изменение значений инпута */
-  const handleChange = (e: FormEvent<HTMLInputElement>): void => {
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
     setValue(value)
   }
-
-  const swap = (arr: TCircle[], firstIndex: number, secondIndex: number): void => {
+  /* рокировка элемнтов */
+  const swap = (arr: TCircle[], firstIndex: number, secondIndex: number) => {
     const temp = arr[firstIndex];
     arr[firstIndex] = arr[secondIndex];
     arr[secondIndex] = temp;
   };
 
-  const reversArray = async(string: string) => {
+  /* приведине значения инпута к массиву и логика перестановки элементов */
+  const reversArray = (string: string) => {
     const lettersArray: TCircle[] = []
     string.split('').forEach((letter) => {
       lettersArray.push({ letter: letter, state: ElementStates.Default })
@@ -53,8 +54,7 @@ export const StringComponent: FC = () => {
   }
   
   console.log(result);
-  
- 
+
   /* рендер букв */
   const lettersElements = result.map((letter: TCircle, index: number) => {
     return (
@@ -76,7 +76,6 @@ export const StringComponent: FC = () => {
           />
           <Button 
             text={"Развернуть"} 
-            onClick={addLetters}
             type='submit'
           />
         </form>

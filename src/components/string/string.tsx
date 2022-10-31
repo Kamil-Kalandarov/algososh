@@ -11,9 +11,8 @@ import { ElementStates } from "../../types/element-states";
 export const StringComponent: FC = () => {
   /* стейт инпута */
   const [inputValue, setValue] = useState<string>('')
-
   /* результат отпарвки ипута */
-  const [result, setResult] = useState<any>([])
+  const [result, setResult] = useState<TCircle[]>([])
 
   /* изменение значений инпута */
   const handleChange = (e: FormEvent<HTMLInputElement>): void => {
@@ -21,23 +20,29 @@ export const StringComponent: FC = () => {
     setValue(value)
   }
 
-  const swap = (arr: any[], firstIndex: number, secondIndex: number): void => {
+  const swap = (arr: TCircle[], firstIndex: number, secondIndex: number): void => {
     const temp = arr[firstIndex];
     arr[firstIndex] = arr[secondIndex];
     arr[secondIndex] = temp;
   };
 
-  const reversArray = (string: string) => {
-    debugger
-    const lettersArray = string.split('')
-    let leftSide = 0
-    let rightSide = lettersArray.length
-    while (leftSide < rightSide) {
-      swap(lettersArray, leftSide, rightSide)
-      leftSide ++
-      rightSide --
+  const reversArray = async(string: string) => {
+    const lettersArray: TCircle[] = []
+    string.split('').forEach((letter) => {
+      lettersArray.push({ letter: letter, state: ElementStates.Default })
+    })
+    setResult(lettersArray)
+    setTimeout(() => {
+      let leftSide = 0
+      let rightSide = lettersArray.length - 1
+      while (leftSide < rightSide) {
+        swap(lettersArray, leftSide, rightSide)
+        leftSide ++
+        rightSide --
     }
     setResult(lettersArray) 
+    }, 2000)
+    
   }
 
   /* добавление преобразованного результата инпута в массив */
@@ -46,15 +51,15 @@ export const StringComponent: FC = () => {
     reversArray(inputValue)
     setValue('')
   }
-
+  
   console.log(result);
   
  
   /* рендер букв */
-  const lettersElements = result.map((index: number, letter: string) => {
+  const lettersElements = result.map((letter: TCircle, index: number) => {
     return (
       <li key={index}>
-        <Circle letter={letter} />
+        <Circle state={letter.state} letter={letter.letter} />
       </li>
     )
   }) 

@@ -30,7 +30,7 @@ export const StringComponent: FC = () => {
   const reversArray = (string: string) => {
     const lettersArray: TCircle[] = []
     string.split('').forEach((letter) => {
-      lettersArray.push({ letter: letter, state: ElementStates.Default })
+      lettersArray.push({ value: letter, state: ElementStates.Default })
     })
     setResult(lettersArray)
     setTimeout(() => {
@@ -59,7 +59,7 @@ export const StringComponent: FC = () => {
   const lettersElements = result.map((letter: TCircle, index: number) => {
     return (
       <li key={index}>
-        <Circle state={letter.state} letter={letter.letter} />
+        <Circle state={letter.state} letter={letter.value.toString()} />
       </li>
     )
   }) 

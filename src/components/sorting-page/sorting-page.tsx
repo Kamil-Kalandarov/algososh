@@ -9,7 +9,7 @@ import { Column } from "../ui/column/column";
 
 type TColumn = {
   number: number,
-  state: ElementStates
+  color: ElementStates
 }
 
 export const SortingPage: FC = () => {
@@ -22,37 +22,39 @@ export const SortingPage: FC = () => {
   }
 
   const getRandomArr = () => {
-    const minLen = 0
-    const maxLen = 100
-    const length = 17
-    const randomArr = []
-    const resultArr: TColumn[] = []
-    for(let i = 0; i < length; i ++) {
-      randomArr.push(randomInteger(minLen, maxLen))
+    const randomArr: TColumn[] = []
+    const randomArrLength = randomInteger(3, 17)
+    for(let i = 0; i < randomArrLength; i ++) {
+      randomArr.push({number: Math.floor(Math.random() * 100), color: ElementStates.Default})
     }
-    randomArr.forEach((number: number) => {
-      resultArr.push({
-        number: number, 
-        state: ElementStates.Default
-      })
-    })
-    setColumns(resultArr);
-  }
-  
-  console.log(columns);
-  
-  const createRandomArray = () => {
-    getRandomArr()
+    setColumns(randomArr);
   }
   
   useEffect(() => {
     getRandomArr()
   }, [])
 
+  const selectionSort = (randomArr: TColumn[]) => {
+    debugger
+    for(let i = 0; i < randomArr.length; i ++) {
+      let minIndex = i
+      for(let j = i + 1; j < randomArr.length; j ++) {
+        if(randomArr[j] < randomArr[minIndex]) {
+          minIndex = j
+        }
+      }
+      let temp = randomArr[i]
+      randomArr[i] = randomArr[minIndex]
+      randomArr[minIndex] = temp
+    }
+     console.log(randomArr);
+  }
+
+
   const columnsElements = columns.map((column: TColumn, index: number) => {
     return (
       <li className={styles.sorting__columnItem} key={index}>
-        <Column index={column.number} state={column.state}/>
+        <Column index={column.number} state={column.color}/>
       </li>
     )
   })
@@ -73,20 +75,15 @@ export const SortingPage: FC = () => {
             <Button 
               sorting={Direction.Descending}
               text={"По убыванию"}
+              onClick={() => selectionSort(columns)}
             />
           </div>
           <Button 
               text={"Новый массив"}
-              onClick={createRandomArray}
+              onClick={getRandomArr}
             />
         </div>
         <ul className={styles.sorting__columnsList}>
-          {/* <li className={styles.sorting__columnItem}>
-            <Column index={10} />
-            <Column index={20} />
-            <Column index={50} />
-            <Column index={100} />
-          </li> */}
           {columnsElements}
         </ul>
       </div> 

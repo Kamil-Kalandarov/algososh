@@ -37,7 +37,7 @@ export const FibonacciPage: FC = () => {
    console.log(result);
    
   /* рендер букв */
- /*  const numbersElements = result.map((number: TCircle, index: number) => {
+  /* const numbersElements = result.map((number: TCircle, index: number) => {
     return (
       <li key={index}>
         <Circle state={number.state} number={number.value} index={index}/>

@@ -6,6 +6,7 @@ import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import styles from "./sorting.module.css";
 import { ElementStates } from "../../types/element-states";
 import { Column } from "../ui/column/column";
+import { delay } from "../../utils/utils";
 
 type TColumn = {
   number: number,
@@ -34,20 +35,28 @@ export const SortingPage: FC = () => {
     getRandomArr()
   }, [])
 
-  const selectionSort = (randomArr: TColumn[]) => {
+  const selectionSort = async(randomArr: TColumn[]) => {
     for(let i = 0; i < randomArr.length; i ++) {
       let minIndex = i
       for(let j = i + 1; j < randomArr.length; j ++) {
-        if(randomArr[j] < randomArr[minIndex]) {
-          minIndex = j
-        }
+        randomArr[i].color = ElementStates.Changing
+        randomArr[j].color = ElementStates.Changing
+        setColumns([...randomArr])
+      await delay(1000)
+      if(randomArr[j].number < randomArr[minIndex].number) {
+        minIndex = j
+       }
+       randomArr[j].color = ElementStates.Default
+       setColumns([...randomArr])
       }
-      let temp = randomArr[i]
-      randomArr[i] = randomArr[minIndex]
-      randomArr[minIndex] = temp
+      let temp = randomArr[i].number;
+      randomArr[i].number = randomArr[minIndex].number
+      randomArr[minIndex].number = temp
+      randomArr[i].color = ElementStates.Modified
     }
+    setColumns([...randomArr]);
     console.log(randomArr);
-  }
+   }
 
   const columnsElements = columns.map((column: TColumn, index: number) => {
     return (
@@ -69,11 +78,11 @@ export const SortingPage: FC = () => {
             <Button 
               sorting={Direction.Ascending}
               text={"По возрастанию"}
+              onClick={() => selectionSort(columns)}
             />
             <Button 
               sorting={Direction.Descending}
               text={"По убыванию"}
-              onClick={() => selectionSort(columns)}
             />
           </div>
           <Button 

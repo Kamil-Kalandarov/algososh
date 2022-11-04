@@ -6,6 +6,7 @@ import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Circle } from "../ui/circle/circle";
 import { TCircle } from "../../types/dataTypes";
 import { ElementStates } from "../../types/element-states";
+import { delay } from "../../utils/utils";
 
 
 export const StringComponent: FC = () => {
@@ -27,23 +28,26 @@ export const StringComponent: FC = () => {
   };
 
   /* приведине значения инпута к массиву и логика перестановки элементов */
-  const reversArray = (string: string) => {
+  const reversArray = async(string: string) => {
     const lettersArray: TCircle[] = []
     string.split('').forEach((letter) => {
       lettersArray.push({ value: letter, state: ElementStates.Default })
     })
     setResult(lettersArray)
-    setTimeout(() => {
       let leftSide = 0
       let rightSide = lettersArray.length - 1
       while (leftSide < rightSide) {
+        lettersArray[leftSide].state = ElementStates.Modified
+        lettersArray[rightSide].state = ElementStates.Modified
+      await delay(1000)
         swap(lettersArray, leftSide, rightSide)
         leftSide ++
         rightSide --
+        lettersArray[leftSide].state = ElementStates.Changing
+        lettersArray[rightSide].state = ElementStates.Changing
+        setResult([...lettersArray])
     }
-    setResult(lettersArray) 
-    }, 2000)
-    
+    setResult([...lettersArray]) 
   }
 
   /* добавление преобразованного результата инпута в массив */

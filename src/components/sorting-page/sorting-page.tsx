@@ -35,7 +35,6 @@ export const SortingPage: FC = () => {
   }, [])
 
   const selectionSort = (randomArr: TColumn[]) => {
-    debugger
     for(let i = 0; i < randomArr.length; i ++) {
       let minIndex = i
       for(let j = i + 1; j < randomArr.length; j ++) {
@@ -47,9 +46,8 @@ export const SortingPage: FC = () => {
       randomArr[i] = randomArr[minIndex]
       randomArr[minIndex] = temp
     }
-     console.log(randomArr);
+    console.log(randomArr);
   }
-
 
   const columnsElements = columns.map((column: TColumn, index: number) => {
     return (

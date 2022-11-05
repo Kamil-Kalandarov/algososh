@@ -37,16 +37,20 @@ export const StringComponent: FC = () => {
       let leftSide = 0
       let rightSide = lettersArray.length - 1
       while (leftSide < rightSide) {
-        lettersArray[leftSide].state = ElementStates.Modified
-        lettersArray[rightSide].state = ElementStates.Modified
+        lettersArray[leftSide].state = ElementStates.Changing
+        lettersArray[rightSide].state = ElementStates.Changing
       await delay(1000)
         swap(lettersArray, leftSide, rightSide)
+        lettersArray[leftSide].state = ElementStates.Modified
+        lettersArray[rightSide].state = ElementStates.Modified
         leftSide ++
         rightSide --
         lettersArray[leftSide].state = ElementStates.Changing
         lettersArray[rightSide].state = ElementStates.Changing
         setResult([...lettersArray])
     }
+    lettersArray[leftSide].state = ElementStates.Modified
+    lettersArray[rightSide].state = ElementStates.Modified
     setResult([...lettersArray]) 
   }
 

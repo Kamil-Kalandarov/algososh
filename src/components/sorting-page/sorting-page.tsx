@@ -15,8 +15,8 @@ type TColumn = {
 
 export const SortingPage: FC = () => {
 
-  const [isAscending, setAscending] = useState<boolean>(false);
-  const [isDescending, setDescending] = useState<boolean>(false);
+  /* const [isAscending, setAscending] = useState<boolean>(false);
+  const [isDescending, setDescending] = useState<boolean>(false); */
   const [sortType, setSortType] = useState<string>('Выбор');
   const [sortDirection, setSortDirection] = useState<Direction>(Direction.Ascending);
 

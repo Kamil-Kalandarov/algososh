@@ -1,0 +1,25 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+  margin: 0 auto;
+}
+
+.stack__form {
+  display: flex;
+  gap: 12px;
+  max-width: 829px;
+}
+
+.stack__lastBtn {
+  padding-left: 68px;
+}
+
+.stack__numbersContainer {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

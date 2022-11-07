@@ -56,7 +56,7 @@ export const FibonacciPage: FC = () => {
             onChange={handleChange}
           />
           <Button 
-            text={"Рассчитать"} 
+            text="Рассчитать"
             type='submit'
           />
         </form>

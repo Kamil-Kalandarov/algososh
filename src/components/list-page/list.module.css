@@ -1,0 +1,25 @@
+.list {
+  max-width: 952px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 38px;
+}
+
+.list__navContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.list__inputContainer {
+  max-width: 204px;
+}
+
+.list__btnsContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.list__button {
+  width: 362px;
+}

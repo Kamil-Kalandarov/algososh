@@ -123,7 +123,7 @@ export const SortingPage: FC = () => {
         if(randomArr[j + 1].number < randomArr[j].number) {
           let temp = randomArr[j].number
           randomArr[j].number = randomArr[j + 1].number
-          randomArr[j + 1].number = temp
+          randomArr[j + 1].number = temp  
           setColumns([...columns])
         }
       }

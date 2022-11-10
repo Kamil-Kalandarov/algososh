@@ -1,12 +1,14 @@
-import React, { FormEvent, useState } from "react";
+import React, { FC, FormEvent, useState } from "react";
 import styles from './stack.module.css';
+import { TCircle } from "../../types/dataTypes";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 
-export const StackPage: React.FC = () => {
+export const StackPage: FC = () => {
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState<string>('');
+  const [stack, setStack] = useState<TCircle[]>([])
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value

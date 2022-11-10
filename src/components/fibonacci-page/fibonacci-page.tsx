@@ -37,13 +37,13 @@ export const FibonacciPage: FC = () => {
    console.log(result);
    
   /* рендер букв */
-  /* const numbersElements = result.map((number: TCircle, index: number) => {
+  const numbersElements = result.map((number: TCircle, index: number) => {
     return (
       <li key={index}>
         <Circle state={number.state} number={number.value} index={index}/>
       </li>
     )
-  })  */
+  }) 
 
   return (
     <SolutionLayout title="Последовательность Фибоначчи">
@@ -61,7 +61,7 @@ export const FibonacciPage: FC = () => {
           />
         </form>
         <ul className={styles.fibonacci__lnumbersContainer}>
-          {/* {numbersElements} */}
+          {numbersElements}
         </ul>
       </div>
     </SolutionLayout>

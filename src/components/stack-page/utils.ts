@@ -25,6 +25,11 @@ export class Stack<T> implements TStack<T>{
       this.container.length
     )
   }
+  getElements = () => {
+    return (
+      this.container
+    )
+  }
   clear = (): void => {
     this.container = []
   }

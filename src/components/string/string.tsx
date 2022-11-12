@@ -63,8 +63,8 @@ export const StringComponent: FC = () => {
   
   console.log(result);
 
-  /* рендер букв */
-  const lettersElements = result.map((letter: TCircle, index: number) => {
+  /* рендер элементов' */
+  const elements = result.map((letter: TCircle, index: number) => {
     return (
       <li key={index}>
         <Circle state={letter.state} letter={letter.value.toString()} />
@@ -88,7 +88,7 @@ export const StringComponent: FC = () => {
           />
         </form>
         <ul className={styles.string__lettersContainer}>
-          {lettersElements}
+          {elements}
         </ul>
       </div>
     </SolutionLayout>

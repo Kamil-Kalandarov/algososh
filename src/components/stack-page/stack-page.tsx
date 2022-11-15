@@ -55,7 +55,7 @@ export const StackPage: FC = () => {
   }
 
   /* удаление всех элементов из стека */
-  const eleteAllElements = () => {
+  const deleteAllElements = () => {
     stackClass.clear()
     setStack([...stackClass.getElements()])
   }
@@ -107,7 +107,7 @@ export const StackPage: FC = () => {
             <Button 
               text='Очистить'
               type='submit'
-              onClick={eleteAllElements}
+              onClick={deleteAllElements}
             />
           </div>
         </form>

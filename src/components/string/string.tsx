@@ -64,10 +64,10 @@ export const StringComponent: FC = () => {
   console.log(result);
 
   /* рендер элементов' */
-  const elements = result.map((letter: TCircle, index: number) => {
+  const elements = result.map((element: TCircle, index: number) => {
     return (
       <li key={index}>
-        <Circle state={letter.state} letter={letter.value.toString()} />
+        <Circle state={element.state} letter={element.value.toString()} />
       </li>
     )
   }) 

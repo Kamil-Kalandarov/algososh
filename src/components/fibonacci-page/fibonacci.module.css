@@ -12,7 +12,7 @@
   max-width: 522px;
 }
 
-.fibonacci__lettersContainer {
+.fibonacci__circlesContainer {
   display: flex;
   gap: 16px;
   list-style: none;

@@ -1,8 +1,7 @@
-export interface TStack<T> {
+export type TStack<T> = {
   push: (item: T) => void;
   pop: () => void;
   peak: () => T | null;
-  getSize: () => number;
   clear: () => void
 };
 
@@ -18,11 +17,6 @@ export class Stack<T> implements TStack<T>{
   peak = (): T | null => {
     return (
       this.container[this.container.length - 1]
-    )
-  }
-  getSize = (): number => {
-    return (
-      this.container.length
     )
   }
   getElements = () => {

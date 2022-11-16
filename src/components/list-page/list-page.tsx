@@ -8,21 +8,23 @@ import { Button } from "../ui/button/button";
 import { TCircle } from "../../types/dataTypes";
 import { ElementStates } from "../../types/element-states";
 import { LinkedList } from "./ utils";
+import { debug } from "console";
 
 export const ListPage: FC = () => {
 
   const initialArray = Array.from({length: 4}, () => {
     return {
-      value: '', 
+      value: Math.floor(Math.random() * 100), 
       state: ElementStates.Default 
     }
   });
 
   const [inputValue, setInputValue] = useState<string | number>('');
   const [inputIndex, setInputIndex] = useState<string | number>('');
-  const [linkedListArray, setLinkedListArray] = useState<TCircle[]>(initialArray);
+  const [linkedListArray, setLinkedListArray] = useState<any[]>(initialArray);
 
   const [linkedListClass] = useState(new LinkedList<TCircle>());
+  
 
   const handleInputValueChange = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
@@ -36,9 +38,19 @@ export const ListPage: FC = () => {
 
   const addToHead = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    linkedListClass.append({value: inputValue, state: ElementStates.Default})
+    linkedListClass.prepend({value: inputValue, state: ElementStates.Default})
+    setLinkedListArray([...linkedListClass.print()])
     setInputIndex('')
   }
+
+  const addToTail = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    linkedListClass.append({value: inputValue, state: ElementStates.Default})
+    setLinkedListArray([...initialArray, ...linkedListClass.print()])
+    setInputIndex('')
+  }
+  
+  
 
   const elements = linkedListArray.map((element: TCircle | null, index: number) => {
     return (
@@ -67,11 +79,12 @@ export const ListPage: FC = () => {
           </div>
           <div className={styles.list__btnsContainer}>
             <Button 
-              text='Добавить в head'  
-              onClick={addToHead}
+              text='Добавить в head' 
+              onClick={addToHead} 
             />
             <Button 
-              text='Добавить в tail'  
+              text='Добавить в tail'   
+              onClick={addToTail} 
             />
             <Button 
               text='Удалить из head'  

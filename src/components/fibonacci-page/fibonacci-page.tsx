@@ -26,6 +26,7 @@ export const FibonacciPage: FC = () => {
   };
 
   const fibonacciCycle = async(number: number) => {
+
     const fibonacciArray = [0, 1]
     if(number === 1) {
       fibonacciArray.push(1, 1)

@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState } from "react";
+import React, { FC, FormEvent, useState, useEffect } from "react";
 import styles from './queue.module.css';
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Circle } from "../ui/circle/circle";
@@ -14,14 +14,17 @@ export const QueuePage: FC = () => {
   const initialArray = Array.from({length: 7}, () => {
     return {
       value: '', 
-      state: ElementStates.Default 
+      state: ElementStates.Default,
     }
   });
+  
 
   const [inputValue, setInputValue] = useState('');
   const [queue, setQueue] = useState<(TCircle | null)[]>(initialArray);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [queueClass] = useState(new Queue<TCircle>(7));
+
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
@@ -33,28 +36,49 @@ export const QueuePage: FC = () => {
   };
 
   const addElement = async() => {
+    setIsLoading(true)
     queueClass.enqueue({value: inputValue, state: ElementStates.Changing})
     setQueue([...queueClass.getElements()])
     await delay(500)
-  }
+    const items = queueClass.getElements();
+    const item = items[queueClass.getTail() - 1]
+    if (item) item.state = ElementStates.Default
+    setQueue([...queueClass.getElements()])
+    setInputValue('')
+    setIsLoading(false)
+  };
 
   const deleteElement = async() => {
+    const items = queueClass.getElements()
+    const item = items[queueClass.getHead() + 1]
     queueClass.dequeue()
+    if (item) item.state = ElementStates.Changing
     setQueue([...queueClass.getElements()])
     await delay(500)
-  }
+    if (item) item.state = ElementStates.Default
+    setQueue([...queueClass.getElements()])
+  };
 
   const deleteAllElements = async() => {
     queueClass.clear()
-    setQueue([...queueClass.getElements()])
-    await delay(500)
-  }
+    setQueue([...queueClass.getElements(), ...initialArray])
+  };
 
-  console.log('initialArray', initialArray);
-  console.log('queue', queue);
-  console.log('queueClass', queueClass);
+  const getHead = (index: number) => {
+    if(index === queueClass.getHead() && !queueClass.isEmpty()) {
+      return 'head'
+    } else {
+      return ''
+    }
+  };
   
-  
+  const getTail = (index: number) => {
+    if(index === queueClass.getTail() - 1 && !queueClass.isEmpty()) {
+      return 'tail'
+    } else {
+      return ''
+    }
+  };
 
   const elements = queue.map((element: TCircle | null, index: number) => {
     return (
@@ -63,6 +87,8 @@ export const QueuePage: FC = () => {
           state={element?.state} 
           letter={element?.value.toString()} 
           index={index}
+          head={getHead(index)}
+          tail={getTail(index)}
         />
       </li>
     )
@@ -82,17 +108,21 @@ export const QueuePage: FC = () => {
             text='Добавить'
             type='submit'
             onClick={addElement}
+            disabled={!inputValue}
+            isLoader={isLoading}
           />
           <Button 
             text='Удалить'
             type='submit'
             onClick={deleteElement}
+            /* disabled={} */
           />
           <div className={styles.queue__lastBtn}>
             <Button 
               text='Очистить'
               type='submit'
               onClick={deleteAllElements}
+              /* disabled={} */
             />
           </div>
         </form>

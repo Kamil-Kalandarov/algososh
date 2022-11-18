@@ -10,25 +10,28 @@ import { delay } from "../../utils/utils";
 
 
 export const StringComponent: FC = () => {
-  /* стейт инпута */
-  const [inputValue, setValue] = useState<string>('')
-  /* результат отпарвки ипута */
-  const [result, setResult] = useState<TCircle[]>([])
 
-  /* изменение значений инпута */
+  /* Стейт инпута */
+  const [inputValue, setValue] = useState<string>('');
+  /* Результат отпарвки ипута */
+  const [result, setResult] = useState<TCircle[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  /* Изменение значений инпута */
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
     setValue(value)
   }
-  /* рокировка элемнтов */
+  /* Рокировка элемнтов */
   const swap = (arr: TCircle[], firstIndex: number, secondIndex: number) => {
     const temp = arr[firstIndex];
     arr[firstIndex] = arr[secondIndex];
     arr[secondIndex] = temp;
   };
 
-  /* приведине значения инпута к массиву и логика перестановки элементов */
+  /* Приведине значения инпута к массиву и логика перестановки элементов */
   const reversArray = async(string: string) => {
+    setIsLoading(true)
     const lettersArray: TCircle[] = []
     string.split('').forEach((letter) => {
       lettersArray.push({ value: letter, state: ElementStates.Default })
@@ -52,25 +55,24 @@ export const StringComponent: FC = () => {
     lettersArray[leftSide].state = ElementStates.Modified
     lettersArray[rightSide].state = ElementStates.Modified
     setResult([...lettersArray]) 
-  }
+    setIsLoading(false)
+  };
 
-  /* добавление преобразованного результата инпута в массив */
+  /* Добавление преобразованного результата инпута в массив */
   const addLetters = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
     reversArray(inputValue)
     setValue('')
-  }
-  
-  console.log(result);
+  };
 
-  /* рендер элементов' */
+  /* Рендер элементов' */
   const elements = result.map((element: TCircle, index: number) => {
     return (
       <li key={index}>
         <Circle state={element.state} letter={element.value.toString()} />
       </li>
     )
-  }) 
+  });
 
   return (
     <SolutionLayout title="Строка">
@@ -85,6 +87,8 @@ export const StringComponent: FC = () => {
           <Button 
             text={"Развернуть"} 
             type='submit'
+            disabled={!inputValue}
+            isLoader={isLoading}
           />
         </form>
         <ul className={styles.string__lettersContainer}>

@@ -19,7 +19,7 @@ export const ListPage: FC = () => {
     }
   });
 
-  const [inputValue, setInputValue] = useState<string | number>('');
+  const [inputValue, setInputValue] = useState('');
   const [inputIndex, setInputIndex] = useState<string | number>('');
   const [linkedListArray, setLinkedListArray] = useState<any[]>(initialArray);
 
@@ -27,8 +27,7 @@ export const ListPage: FC = () => {
   
 
   const handleInputValueChange = (e: FormEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value
-    setInputValue(value)
+    setInputValue(e.currentTarget.value)
   }
 
   const handleInputIndexChange = (e: FormEvent<HTMLInputElement>) => {
@@ -39,14 +38,14 @@ export const ListPage: FC = () => {
   const addToHead = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
     linkedListClass.prepend({value: inputValue, state: ElementStates.Default})
-    setLinkedListArray([...linkedListClass.print()])
+    setLinkedListArray([...linkedListClass.print(), ...linkedListArray])
     setInputIndex('')
   }
 
   const addToTail = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
     linkedListClass.append({value: inputValue, state: ElementStates.Default})
-    setLinkedListArray([...initialArray, ...linkedListClass.print()])
+    setLinkedListArray([...linkedListClass.print()])
     setInputIndex('')
   }
   

@@ -10,27 +10,30 @@ import { Circle } from "../ui/circle/circle";
 import { delay } from "../../utils/utils";
 
 export const StackPage: FC = () => {
-  /* стейт инпута  */
+
+  /* Стейт инпута  */
   const [inputValue, setInputValue] = useState<string>('');
-  /* стейт массива стека  */
+  /* Стейт массива стека  */
   const [stack, setStack] = useState<TCircle[]>([]);
+  const [isLoading, setIsloading] = useState<boolean>(false);
   
-  /* экземпляр класса стека  */
+  /* Экземпляр класса стека  */
   const [stackClass] = useState(new Stack<TCircle>());
 
-  /* изменение значений инпута */
+  /* Изменение значений инпута */
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
     setInputValue(value)
-  }
+  };
 
-  /* отмена сабмита поумолчанию */
+  /* Отмена сабмита поумолчанию */
   const handleSubmit = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
-  }
+  };
 
-  /* добавление элемента в стек */
+  /* Добавление элемента в стек */
   const pushElement = async() => {
+    setIsloading(true)
     stackClass.push({value: inputValue, state: ElementStates.Changing})
     setStack([...stackClass.getElements()])
     setInputValue('')
@@ -40,9 +43,10 @@ export const StackPage: FC = () => {
       value.state = ElementStates.Default
       setStack([...stackClass.getElements()])
     } 
-  }
+    setIsloading(false)
+  };
 
-  /* удаление элемента из стека */
+  /* Удаление элемента из стека */
   const popElement = async() => {
     const value = stackClass.peak()
     if(value) {
@@ -52,15 +56,15 @@ export const StackPage: FC = () => {
     await delay(500)
     stackClass.pop()
     setStack([...stackClass.getElements()])
-  }
+  };
 
-  /* удаление всех элементов из стека */
+  /* Удаление всех элементов из стека */
   const deleteAllElements = () => {
     stackClass.clear()
     setStack([...stackClass.getElements()])
-  }
+  };
 
-  /* определение последнего элемента массива */
+  /* Определение последнего элемента массива */
   const getPosition = (index: number, stack: TCircle[]) => {
     if(index === stack.length - 1) {
       return 'top'
@@ -68,8 +72,8 @@ export const StackPage: FC = () => {
       return ''
     }
   };
-  
-  /* рендер элементов */
+
+  /* Рендер элементов */
   const elements = stack.map((element: TCircle, index: number) => {
     return (
       <li key={index}>
@@ -81,7 +85,7 @@ export const StackPage: FC = () => {
         />
       </li>
     )
-  }) 
+  });
 
   return (
     <SolutionLayout title="Стек">
@@ -97,17 +101,21 @@ export const StackPage: FC = () => {
             text='Развернуть'
             type='submit'
             onClick={pushElement}
+            isLoader={isLoading}
+            disabled={!inputValue || stack.length >= 20}
           />
           <Button 
             text='Удалить'
             type='submit'
             onClick={popElement}
+            disabled={stack.length === 0}
           />
           <div className={styles.stack__lastBtn}>
             <Button 
               text='Очистить'
               type='submit'
               onClick={deleteAllElements}
+              disabled={stack.length === 0}
             />
           </div>
         </form>

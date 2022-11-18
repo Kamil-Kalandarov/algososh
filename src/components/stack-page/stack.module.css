@@ -17,8 +17,11 @@
 }
 
 .stack__numbersContainer {
+  flex-wrap: wrap;
+  max-width: 944px;
   display: flex;
-  gap: 16px;
+  row-gap: 78px;
+  column-gap: 16px;
   list-style: none;
   padding: 0;
   margin: 0;

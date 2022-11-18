@@ -1,12 +1,10 @@
 export class Node<T> {
     value: T
     next: Node<T> | null
-    /* previouse: null; */
     tail: Node<T> | null | undefined;
     constructor(value: T, next?: Node<T> | null) {
         this.value = value;
         this.next = (next === undefined ? null : next);
-        /* this.previouse = null */
     }
 };
 
@@ -22,7 +20,6 @@ type TLinkedList<T> = {
 export class LinkedList<T> implements TLinkedList<T> {
     private head: Node<T> | null
     private tail: Node<T> | null
-    /* private previouse: Node<T> | null | undefined */
     private length: number
     constructor() {
       this.head = null
@@ -38,7 +35,7 @@ export class LinkedList<T> implements TLinkedList<T> {
             this.tail = newNode;
             this.length++
             return this;
-        };
+        }
         this.tail.next = newNode;
         this.tail = newNode
         this.length++

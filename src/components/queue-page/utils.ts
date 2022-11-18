@@ -10,8 +10,9 @@ export class Queue<T> implements TQueue<T>{
   private container: (T | null)[] = []
   private head = 0
   private tail = 0
-  private readonly size: number = 0
+  private size: number = 0
   private length: number = 0
+  current: any;
 
   constructor(size: number) {
     this.size = size;
@@ -24,6 +25,7 @@ export class Queue<T> implements TQueue<T>{
     }
     this.container[this.tail] = item
     this.tail ++
+    this.length ++
   }
 
   dequeue = (): void => {
@@ -32,6 +34,7 @@ export class Queue<T> implements TQueue<T>{
     } 
     this.container[this.head] = null
     this.head ++
+    this.length --
   }
 
   peak = (): T | null => {
@@ -41,11 +44,9 @@ export class Queue<T> implements TQueue<T>{
     return this.container[this.head % this.size];
   }
 
-  getElements = () => {
-    return (
-      this.container
-    )
-  }
+  getElements = (): (T | null)[] => {
+    return [...this.container];
+  };
 
   getHead = () => {
     return (

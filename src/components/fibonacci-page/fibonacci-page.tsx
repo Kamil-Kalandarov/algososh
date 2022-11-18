@@ -4,20 +4,15 @@ import { Button } from "../ui/button/button";
 import { Input } from "../ui/input/input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Circle } from "../ui/circle/circle";
-import { TCircle } from "../../types/dataTypes";
-import { ElementStates } from "../../types/element-states";
 import { delay } from "../../utils/utils";
 
-type TNumberCircle = {
-  state: ElementStates
-  value: number
-}
-
 export const FibonacciPage: FC = () => {
+
   /* стейт инпута */
   const [inputValue, setInputValue] = useState<number>(0);
   /* результат отпарвки ипута */
   const [result, setResult] = useState<number[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   /* изменение значений инпута */
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
@@ -26,20 +21,20 @@ export const FibonacciPage: FC = () => {
   };
 
   const fibonacciCycle = async(number: number) => {
-
-    const fibonacciArray = [0, 1]
-    if(number === 1) {
-      fibonacciArray.push(1, 1)
-      setResult([...fibonacciArray])
-    } else {
-    for(let i = 2; i <= number; i ++) {
-      fibonacciArray.push(fibonacciArray[i - 2] + fibonacciArray[i - 1])
-      console.log(fibonacciArray);
-      
-      await delay(500)
-      setResult([...fibonacciArray.slice(1)])
+    setIsLoading(true)
+    const fibonacciArray: number[] = []
+    for(let i = 0; i < number + 1; i ++){
+      if(fibonacciArray.length < 2) {
+        fibonacciArray.push(1)
+        setResult([...fibonacciArray])
+      } else {
+        fibonacciArray.push(fibonacciArray[i - 2] + fibonacciArray[i - 1])
+        await delay(500)
+        setResult([...fibonacciArray])
+      }
     }
-    }
+    setResult([...fibonacciArray])
+    setIsLoading(false)
   }
     
   /* добавление преобразованного результата инпута в массив */
@@ -48,8 +43,6 @@ export const FibonacciPage: FC = () => {
     fibonacciCycle(inputValue)
     setInputValue(0)
   };
-
-   console.log(result);
    
   /* рендер букв */
   const elements = result.map((element: number, index: number) => {
@@ -65,14 +58,19 @@ export const FibonacciPage: FC = () => {
       <div className={styles.fibonacci}>
         <form className={styles.fibonacci__form} onSubmit={addNumbers}>
           <Input 
+            type='number'
+            max={19}
             maxLength={19} 
             isLimitText={true} 
             value={inputValue}
             onChange={handleChange}
           />
           <Button 
+            extraClass={styles.fibonacci__button}
             text="Рассчитать"
             type='submit'
+            isLoader={isLoading}
+            disabled={!inputValue}
           />
         </form>
         <ul className={styles.fibonacci__circlesContainer}>

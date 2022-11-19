@@ -21,7 +21,9 @@ export const QueuePage: FC = () => {
 
   const [inputValue, setInputValue] = useState('');
   const [queue, setQueue] = useState<(TCircle | null)[]>(initialArray);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isAdding, setIsAdding] = useState<boolean>(false);
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [isAllDeleting, setIsAllDeleting] = useState<boolean>(false);
 
   const [queueClass] = useState(new Queue<TCircle>(7));
 
@@ -36,19 +38,22 @@ export const QueuePage: FC = () => {
   };
 
   const addElement = async() => {
-    setIsLoading(true)
+    setIsAdding(true)
     queueClass.enqueue({value: inputValue, state: ElementStates.Changing})
     setQueue([...queueClass.getElements()])
     await delay(500)
     const items = queueClass.getElements();
     const item = items[queueClass.getTail() - 1]
-    if (item) item.state = ElementStates.Default
+    if(item) {
+      item.state = ElementStates.Default
+    }
     setQueue([...queueClass.getElements()])
     setInputValue('')
-    setIsLoading(false)
+    setIsAdding(false)
   };
 
   const deleteElement = async() => {
+    setIsDeleting(true)
     const items = queueClass.getElements()
     const item = items[queueClass.getHead() + 1]
     queueClass.dequeue()
@@ -57,11 +62,14 @@ export const QueuePage: FC = () => {
     await delay(500)
     if (item) item.state = ElementStates.Default
     setQueue([...queueClass.getElements()])
+    setIsDeleting(false)
   };
 
   const deleteAllElements = async() => {
+    setIsAllDeleting(true)
     queueClass.clear()
-    setQueue([...queueClass.getElements(), ...initialArray])
+    setQueue([...queueClass.getElements()])
+    setIsAllDeleting(false)
   };
 
   const getHead = (index: number) => {
@@ -93,6 +101,7 @@ export const QueuePage: FC = () => {
       </li>
     )
   });
+  
 
   return (
     <SolutionLayout title="Очередь">
@@ -109,20 +118,22 @@ export const QueuePage: FC = () => {
             type='submit'
             onClick={addElement}
             disabled={!inputValue}
-            isLoader={isLoading}
+            isLoader={isAdding}
           />
           <Button 
             text='Удалить'
             type='submit'
             onClick={deleteElement}
-            /* disabled={} */
+            disabled={isAdding || queueClass.isEmpty()}
+            isLoader={isDeleting}
           />
           <div className={styles.queue__lastBtn}>
             <Button 
               text='Очистить'
               type='submit'
               onClick={deleteAllElements}
-              /* disabled={} */
+              disabled={isAdding || isDeleting || queueClass.isEmpty()}
+              isLoader={isAllDeleting}
             />
           </div>
         </form>

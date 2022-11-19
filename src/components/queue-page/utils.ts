@@ -20,7 +20,7 @@ export class Queue<T> implements TQueue<T>{
   }
 
   enqueue = (item: T): void => {
-    if (this.length >= this.size) {
+    if(this.length >= this.size) {
       throw new Error("Maximum length exceeded");
     }
     this.container[this.tail] = item
@@ -31,10 +31,14 @@ export class Queue<T> implements TQueue<T>{
   dequeue = (): void => {
     if(this.isEmpty()) {
       throw new Error("No elements in the queue");
-    } 
+    }
     this.container[this.head] = null
     this.head ++
     this.length --
+    if(this.isEmpty()) {
+      this.head = 0 
+      this.tail = 0   
+    }
   }
 
   peak = (): T | null => {

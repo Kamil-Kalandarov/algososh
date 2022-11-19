@@ -8,7 +8,6 @@ import { Button } from "../ui/button/button";
 import { TCircle } from "../../types/dataTypes";
 import { ElementStates } from "../../types/element-states";
 import { LinkedList } from "./ utils";
-import { debug } from "console";
 
 export const ListPage: FC = () => {
 

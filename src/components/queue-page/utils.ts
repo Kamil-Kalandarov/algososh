@@ -1,7 +1,6 @@
 export type TQueue<T> = {
   enqueue: (item: T) => void
   dequeue: () => void
-  peak: () => T | null
   clear: () => void
   isEmpty: () => boolean
 };
@@ -39,13 +38,6 @@ export class Queue<T> implements TQueue<T>{
       this.head = 0 
       this.tail = 0   
     }
-  }
-
-  peak = (): T | null => {
-    if (this.isEmpty()) {
-      throw new Error('peek: No elements in the queue');
-    }
-    return this.container[this.head % this.size];
   }
 
   getElements = (): (T | null)[] => {

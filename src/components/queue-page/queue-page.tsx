@@ -11,6 +11,7 @@ import { delay } from "../../utils/utils";
 
 export const QueuePage: FC = () => {
 
+  /* Изначальный массив с пустыми кружками */
   const initialArray = Array.from({length: 7}, () => {
     return {
       value: '', 
@@ -18,61 +19,99 @@ export const QueuePage: FC = () => {
     }
   });
   
-
+  /* Стейт значения инпута */
   const [inputValue, setInputValue] = useState('');
+  /* Стейт массива с элементами */
   const [queue, setQueue] = useState<(TCircle | null)[]>(initialArray);
+  /* Стейты процесса добавления и удаления */
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [isAllDeleting, setIsAllDeleting] = useState<boolean>(false);
 
+  /* экземпляр класса Queue */
   const [queueClass] = useState(new Queue<TCircle>(7));
 
-
+  /* Хендлер изменения значения инпута */
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
     setInputValue(value)
   };
 
+  /* Отмена перезагрузки страницы рпи клике по кнопке */
   const handleSubmit = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
   };
 
+  /* Функция добавления элемента на страницу */
   const addElement = async() => {
+    /* Запуск лоадера */
     setIsAdding(true)
+    /* Вызов метода enqueue и передача ему в аргументы значение инпута и стейта цвета */
     queueClass.enqueue({value: inputValue, state: ElementStates.Changing})
+    /* Добавление в стейт ммассива элементов объекта, который были добавлен выше методом enqueue */
     setQueue([...queueClass.getElements()])
+    /* Задержка для анимации */
     await delay(500)
+    /* Получение контейнера с элементами */
     const items = queueClass.getElements();
+    /* Получение хвоста контейнера items */
     const item = items[queueClass.getTail() - 1]
+    /* Если хвост есть, то меняем ему цвет */
     if(item) {
       item.state = ElementStates.Default
     }
+    /* Внесение изменений в стейт */
     setQueue([...queueClass.getElements()])
+    /* Очищение инпута */
     setInputValue('')
+    /* Отключение лоадера */
     setIsAdding(false)
   };
 
+  /* Функция удаления первого элемента со страницы */
   const deleteElement = async() => {
+    /* Запуск лоадера */
     setIsDeleting(true)
+    /* Получение контейнера с элементами */
     const items = queueClass.getElements()
+    /* Получение головы контейнера items */
     const item = items[queueClass.getHead() + 1]
+    /* Вызов метода dequeue, который удаляет голову из контейнера */
     queueClass.dequeue()
-    if (item) item.state = ElementStates.Changing
+    /* Если голова есть, то меняем ей цвет */
+    if (item) {
+      item.state = ElementStates.Changing
+    }
+    /* Внесение изменений в стейт */
     setQueue([...queueClass.getElements()])
+    /* Задержка для анимации */
     await delay(500)
-    if (item) item.state = ElementStates.Default
+    /* Если голова есть, то меняем ей цвет */
+    if (item) {
+      item.state = ElementStates.Default
+    }
+    /* Внесение изменений в стейт */
     setQueue([...queueClass.getElements()])
+    /* Отключение лоадера */
     setIsDeleting(false)
   };
 
+  /* Функция удаления всех элементов со страницы */
   const deleteAllElements = async() => {
+    /* Запуск лоадера */
     setIsAllDeleting(true)
+    /* Вызов метода clear, который удаляет все элементы из контейнера */
     queueClass.clear()
+    /* Внесение изменений в стейт */
     setQueue([...queueClass.getElements()])
+    /* Отключение лоадера */
     setIsAllDeleting(false)
   };
 
+  /* Функция присвоения надписи head над первым элементом */
   const getHead = (index: number) => {
+    /* Если индекс элемента в контейнере равен голове контейнера в queueClass и массив не пустой, 
+    то этому элементу присваивается строка head */
     if(index === queueClass.getHead() && !queueClass.isEmpty()) {
       return 'head'
     } else {
@@ -80,7 +119,10 @@ export const QueuePage: FC = () => {
     }
   };
   
+  /* Функция присвоения надписи tail под последним элементом */
   const getTail = (index: number) => {
+    /* Если индекс элемента в контейнере равен хвосту контейнера в queueClass и массив не пустой, 
+    то этому элементу присваивается строка tail */
     if(index === queueClass.getTail() - 1 && !queueClass.isEmpty()) {
       return 'tail'
     } else {
@@ -88,6 +130,7 @@ export const QueuePage: FC = () => {
     }
   };
 
+  /* Рендер элементов */
   const elements = queue.map((element: TCircle | null, index: number) => {
     return (
       <li key={index}>
@@ -102,7 +145,6 @@ export const QueuePage: FC = () => {
     )
   });
   
-
   return (
     <SolutionLayout title="Очередь">
       <div className={styles.queue}>
@@ -117,7 +159,7 @@ export const QueuePage: FC = () => {
             text='Добавить'
             type='submit'
             onClick={addElement}
-            disabled={!inputValue}
+            disabled={!inputValue || queueClass.getTail() === 7}
             isLoader={isAdding}
           />
           <Button 

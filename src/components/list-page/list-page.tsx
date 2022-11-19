@@ -44,7 +44,7 @@ export const ListPage: FC = () => {
   const addToTail = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
     linkedListClass.append({value: inputValue, state: ElementStates.Default})
-    setLinkedListArray([...linkedListClass.print()])
+    setLinkedListArray([...linkedListArray, ...linkedListClass.print()])
     setInputIndex('')
   }
   

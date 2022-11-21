@@ -11,6 +11,11 @@
   gap: 12px;
 }
 
+.list__form {
+  display: flex;
+  gap: 12px;
+}
+
 .list__inputContainer {
   max-width: 204px;
 }
@@ -26,8 +31,48 @@
 
 .list__elementsContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   list-style: none;
   padding: 0;
   margin: 0 auto;
+}
+
+.list__listItem {
+  display: grid;
+  grid-template-columns: 80px 24px;
+  grid-template-rows: 56px 80px 56px;
+  row-gap: 8px;
+  column-gap: 16px;
+  align-items: center;
+  justify-items: center;
+}
+
+.list__arrow {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.list__smallTopElement {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.list__smallBottomElement {
+  padding-top: 60px;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.list__element {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
 }

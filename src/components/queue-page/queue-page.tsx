@@ -37,7 +37,7 @@ export const QueuePage: FC = () => {
     setInputValue(value)
   };
 
-  /* Отмена перезагрузки страницы рпи клике по кнопке */
+  /* Отмена перезагрузки страницы при клике по кнопке */
   const handleSubmit = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
   };

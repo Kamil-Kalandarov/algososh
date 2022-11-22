@@ -11,7 +11,7 @@ export class Queue<T> implements TQueue<T>{
   private tail = 0
   private size: number = 0
   private length: number = 0
-  current: any;
+  current: number | undefined;
 
   constructor(size: number) {
     this.size = size;

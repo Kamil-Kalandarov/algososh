@@ -92,7 +92,7 @@ export const SortingPage: FC = () => {
 
    
   /* функция пузырьковой сортировки */
-   const bubbleSort = (firstEl: any, secondEl: any) => {
+   const bubbleSort = (firstEl: TColumn, secondEl: TColumn) => {
     if(secondEl.number > firstEl.number){
       const temp = firstEl.number
       firstEl.number = secondEl.number

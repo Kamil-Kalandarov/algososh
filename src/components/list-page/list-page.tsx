@@ -7,7 +7,7 @@ import { ArrowIcon } from "../ui/icons/arrow-icon"
 import { Button } from "../ui/button/button"
 import { TCircle } from "../../types/dataTypes"
 import { ElementStates } from "../../types/element-states"
-import { LinkedList } from "./ utils"
+import { LinkedList } from "./utils"
 import { delay } from "../../utils/utils"
 
 export const ListPage: FC = () => {
@@ -350,7 +350,7 @@ export const ListPage: FC = () => {
           head={getHead(index)}
           tail={getTail(index)}
           letter={item.value}
-          state={item.color}
+          state={item.state}
         />
       </div>
       {isLoading === true && (deleteHeadOperation === true || deleteTailOperation === true || deleteByindexOperation === true) 

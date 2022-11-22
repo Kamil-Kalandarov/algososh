@@ -70,7 +70,7 @@ export const FibonacciPage: FC = () => {
             text="Рассчитать"
             type='submit'
             isLoader={isLoading}
-            disabled={!inputValue}
+            disabled={!inputValue || inputValue > 19}
           />
         </form>
         <ul className={styles.fibonacci__circlesContainer}>

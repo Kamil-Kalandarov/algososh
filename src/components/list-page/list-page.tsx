@@ -61,8 +61,7 @@ export const ListPage: FC = () => {
   
   /* Функция добавления элемента в начало массива */
   const addToHead = async () => {
-    /* Если инпут не пустой и длинна массива меньше 6, то изменить следующие состояния: */
-    if (inputValue && list.listLength < 6) {
+    if(listArray.length < 12) {
       /* Поставить тип операции AddToHead */
       setIsAddingToHead(true)
       /* Включить лоадер */
@@ -72,7 +71,7 @@ export const ListPage: FC = () => {
       /* Установить флаг начала операции AddToHead */
       setAddToHeadOperation(true)
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Вызов метода prepend и передача ему в аргументы значение инпута */
       list.prepend(inputValue)
       /* установить флаг завершения операции AddToHead */
@@ -84,7 +83,7 @@ export const ListPage: FC = () => {
       /* обновление стейта */
       setListArray(newArray)
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Присовение цвета элементу по 0 индесом элементу */
       newArray[0].color = ElementStates.Default
       /* обновление стейта */
@@ -100,8 +99,7 @@ export const ListPage: FC = () => {
 
   /* Функция добавления элемента в конец массива */
   const addToTail = async () => {
-    /* Если инпут не пустой и длинна массива меньше 6, то изменить следующие состояния: */
-    if (inputValue && list.listLength < 6) {
+    if(list.listLength < 12) {
       /* поставить тип операции AddToTail */
       setIsAddingTotail(true)
       /* Включить лоадер */
@@ -111,7 +109,7 @@ export const ListPage: FC = () => {
       /* Установить флаг начала операции AddToTail */
       setAddToTailOperation(true)
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Вызов метода append и передача ему в аргументы значение инпута */
       list.append(inputValue)
       /* установить флаг завершения операции AddToTail */
@@ -123,7 +121,7 @@ export const ListPage: FC = () => {
       /* обновление стейта */
       setListArray(newArr)
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Присовение цвета последнему элементу */
       newArr[newArr.length - 1].color = ElementStates.Default
       /* Обновление стейта */
@@ -158,7 +156,7 @@ export const ListPage: FC = () => {
       /* Обновление стейта */
       setListArray(newArr)
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Вызов метода удаления элемента deleteHead */
       list.deleteHead()
       /* Установить флаг окончания операции deleteHead */
@@ -193,7 +191,7 @@ export const ListPage: FC = () => {
       /* Обновление стейта */
       setListArray(newArr)
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Вызов метода удаления элемента deleteTail */
       list.deleteTail()
       /* Установить флаг окончания операции deleteTail */
@@ -209,8 +207,8 @@ export const ListPage: FC = () => {
 
   /* Функция добавления элемента по индексу */
   const addByindex = async () => {
-    /* Если значения инпута меньше 5 и длинная массива меньше 6, то */
-    if (Number(inputIndex) < 5 && list.listLength < 6) {
+    /* Если есть значение инпута, то */
+    if (Number(inputIndex) < 11 && list.listLength < 12) {
       /* Поставить тип операции AddByindex */
       setIsAddingByIndex(true)
       /* Включить лоадер */
@@ -224,7 +222,7 @@ export const ListPage: FC = () => {
       for (let i = 0; i <= Number(inputIndex); i++) {
         setInputValueindex(i)
         /* Задержка для анимации */
-        await delay(1000)
+        await delay(500 )
         /* Если индекс текущего элемент меньше значения индекса в инпуте, то присваивать ему зеленый цвет */
         if (i < Number(inputIndex)) {
           newArr[i].color = ElementStates.Changing
@@ -234,8 +232,6 @@ export const ListPage: FC = () => {
       }
       /* Установить флаг окончания операции addByindex */
       setAddByindexOperation(false)
-      /* Обнулить инпут */
-      setInputValueindex(Number(''))
       /* Добавить элемент в массив методом addByIndex */
       list.addByIndex(inputValue, Number(inputIndex))
       /* Создание нового массива при помощи метода getArrWithColor */
@@ -245,7 +241,7 @@ export const ListPage: FC = () => {
       /* Обновить стейт */
       setListArray(finalArr)
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Изменить цвет элемента */
       finalArr[Number(inputIndex)].color = ElementStates.Default
       /* Обновить стейт */
@@ -253,8 +249,9 @@ export const ListPage: FC = () => {
     }
     /* Отключить лоадер */
     setIsLoading(false)
-    /* Обнулить значения инпута */
+    /* Обнулить значения инпутов */
     setIndexValueInput('')
+    setInputValue('')
     /* Обнулить тип операции */
     setIsAddingByIndex(false)
     /* setIsAddingToHeadByIndex(false) */
@@ -262,8 +259,8 @@ export const ListPage: FC = () => {
 
   /* Функция удаления элемента по индексу */
   const deleteByindex = async () => {
-    /* Если значения инпута меньше длины массива и значения индекса в инпуте меньше 7, то */
-    if (Number(inputIndex) < list.listLength && Number(inputIndex) < 7) {
+    /* Если есть значение инпута, то */
+    if (Number(inputIndex) < list.listLength) {
       /* Поставить тип операции deleteByindex */
       setIsDeletingByIndex(true)
       /* Включить лоадер */
@@ -273,12 +270,12 @@ export const ListPage: FC = () => {
       /* До тех пор пока индекс текущего элемент меньше или равен значению индекса в инпуте, 
       делать задержку для анимации и присваивать элементу фиолетовый цвет и обновлять состояние стейта */
       for (let i = 0; i <= Number(inputIndex); i++) {
-        await delay(1000)
         newArr[i].color = ElementStates.Changing
+        await delay(500 )
         setListArray([...newArr])
       }
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Присвоение значения для маленького кружочка */
       setSmalCircle(newArr[Number(inputIndex)].value)
       newArr[Number(inputIndex)].value = ''
@@ -286,7 +283,7 @@ export const ListPage: FC = () => {
       newArr[Number(inputIndex)].color = ElementStates.Default
       setInputValueindex(Number(inputIndex))
       /* Задержка для анимации */
-      await delay(1000)
+      await delay(500 )
       /* Удаление элемента методом deleteByIndex */
       list.deleteByIndex(Number(inputIndex))
       /* Обновление стейта с элементами */
@@ -350,7 +347,7 @@ export const ListPage: FC = () => {
           head={getHead(index)}
           tail={getTail(index)}
           letter={item.value}
-          state={item.state}
+          state={item.color}
         />
       </div>
       {isLoading === true && (deleteHeadOperation === true || deleteTailOperation === true || deleteByindexOperation === true) 
@@ -370,72 +367,82 @@ export const ListPage: FC = () => {
   return (
     <SolutionLayout title="Связный список">
       <div className={styles.list}>
-        <div className={styles.list__navContainer}>
-          <form className={styles.list__form} onSubmit={handleSubmit}>
-            <div className={styles.list__inputContainer}>
-              <Input 
-                placeholder='Введите занчение'
-                maxLength={4}
-                isLimitText={true} 
-                value={inputValue}
-                onChange={handleInputValue}
-              />
-            </div>
-            <div className={styles.list__btnsContainer}>
-              <Button 
-                text='Добавить в head' 
-                onClick={addToHead} 
-                disabled={listArray.length === 6 || !inputValue || isAddingToTail || isAddingByIndex || isDeletingHead || isDeletingTail || isDeletingByIndex}
-                isLoader={isAddingToHead}
-              />
-              <Button 
-                text='Добавить в tail'   
-                onClick={addToTail}
-                disabled={listArray.length === 6 || !inputValue || isAddingToHead || isAddingByIndex || isDeletingHead || isDeletingTail || isDeletingByIndex}
-                isLoader={isAddingToTail}
-              />
-              <Button 
-                text='Удалить из head' 
-                onClick={deleteHead} 
-                disabled={isAddingToHead || isAddingByIndex || isAddingToTail || isDeletingTail || isDeletingByIndex}
-                isLoader={isDeletingHead}
-              />
-              <Button 
-                text='Удалить из tail' 
-                onClick={deleteTail} 
-                disabled={isAddingToHead || isAddingByIndex || isAddingToTail || isDeletingHead || isDeletingByIndex}
-                isLoader={isDeletingTail}
-              />
-            </div>
-          </form>
-        </div>
-        <div className={styles.list__navContainer}>
-          <form className={styles.list__form} onSubmit={handleSubmit}>
-            <div className={styles.list__inputContainer}>
-              <Input 
-                value={inputIndex}
-                maxLength={4}
-                isLimitText={true} 
-                onChange={handleInputIndex}
-              />
-            </div>
-            <div className={styles.list__btnsContainer}>
-              <Button 
-                text='Добавить по индексу'
-                extraClass={styles.list__button}
-                onClick={addByindex}
-                disabled={listArray.length === 6 || !inputIndex || isAddingToTail || isAddingToHead || isDeletingHead || isDeletingTail || isDeletingByIndex}
-                isLoader={isAddingByIndex}
-              />
-              <Button 
-                text='Удалить по индексу'
-                extraClass={styles.list__button}
-                onClick={deleteByindex}
-                disabled={!inputIndex || isAddingToTail || isAddingToHead || isDeletingHead || isDeletingTail || isAddingByIndex}
-                isLoader={isDeletingByIndex}
-              />
-            </div>
-          </form>
+        <div>
+          <div className={styles.list__navContainer}>
+            <form className={styles.list__form} onSubmit={handleSubmit}>
+              <div className={styles.list__inputContainer}>
+                <Input 
+                  placeholder='Введите занчение'
+                  maxLength={4}
+                  isLimitText={true} 
+                  value={inputValue}
+                  onChange={handleInputValue}
+                />
+              </div>
+              <div className={styles.list__btnsContainer}>
+                <Button 
+                  text='Добавить в head' 
+                  onClick={addToHead} 
+                  disabled={listArray.length === 12 || !inputValue || isAddingToTail || isAddingByIndex || 
+                    isDeletingHead || isDeletingTail || isDeletingByIndex}
+                  isLoader={isAddingToHead}
+                />
+                <Button 
+                  text='Добавить в tail'   
+                  onClick={addToTail}
+                  disabled={listArray.length === 12 || !inputValue || isAddingToHead || isAddingByIndex || 
+                    isDeletingHead || isDeletingTail || isDeletingByIndex}
+                  isLoader={isAddingToTail}
+                />
+                <Button 
+                  text='Удалить из head' 
+                  onClick={deleteHead} 
+                  disabled={isAddingToHead || listArray.length === 0 || isAddingByIndex || isAddingToTail || 
+                    isDeletingTail || isDeletingByIndex}
+                  isLoader={isDeletingHead}
+                />
+                <Button 
+                  text='Удалить из tail' 
+                  onClick={deleteTail} 
+                  disabled={isAddingToHead || listArray.length === 0 || isAddingByIndex || isAddingToTail || 
+                    isDeletingHead || isDeletingByIndex}
+                  isLoader={isDeletingTail}
+                />
+              </div>
+            </form>
+          </div> 
+          <div className={styles.list__navContainer}>
+            <form className={styles.list__form} onSubmit={handleSubmit}>
+              <div className={styles.list__inputContainer}>
+                <Input 
+                  placeholder='Введите индекс'
+                  value={inputIndex}
+                  maxLength={4}
+                  isLimitText={true} 
+                  onChange={handleInputIndex}
+                  type='number'
+                />
+              </div>
+              <div className={styles.list__btnsContainer}>
+                <Button 
+                  text='Добавить по индексу'
+                  extraClass={styles.list__button}
+                  onClick={addByindex}
+                  disabled={listArray.length === 12 || !listArray || !inputValue || !inputIndex || isAddingToTail || 
+                    isAddingToHead || isDeletingHead || isDeletingTail || isDeletingByIndex}
+                  isLoader={isAddingByIndex}
+                />
+                <Button 
+                  text='Удалить по индексу'
+                  extraClass={styles.list__button}
+                  onClick={deleteByindex}
+                  disabled={listArray.length === 0 || !inputIndex || isAddingToTail || isAddingToHead || 
+                    isDeletingHead || isDeletingTail || isAddingByIndex}
+                  isLoader={isDeletingByIndex}
+                />
+              </div>
+            </form>
+          </div>
         </div>
         <div className={styles.list__elementsContainer}>
           {elements}

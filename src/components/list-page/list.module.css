@@ -1,13 +1,13 @@
 .list {
-  max-width: 952px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  gap: 38px;
 }
 
 .list__navContainer {
   display: flex;
+  align-self: center;
   gap: 12px;
 }
 

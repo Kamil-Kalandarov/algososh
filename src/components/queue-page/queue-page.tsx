@@ -8,6 +8,7 @@ import { TCircle } from "../../types/dataTypes";
 import { ElementStates } from "../../types/element-states";
 import { Queue } from "./utils";
 import { delay } from "../../utils/utils";
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
 export const QueuePage: FC = () => {
 
@@ -51,7 +52,7 @@ export const QueuePage: FC = () => {
     /* Добавление в стейт ммассива элементов объекта, который были добавлен выше методом enqueue */
     setQueue([...queueClass.getElements()])
     /* Задержка для анимации */
-    await delay(500)
+    await delay(SHORT_DELAY_IN_MS)
     /* Получение контейнера с элементами */
     const items = queueClass.getElements();
     /* Получение хвоста контейнера items */
@@ -85,7 +86,7 @@ export const QueuePage: FC = () => {
     /* Внесение изменений в стейт */
     setQueue([...queueClass.getElements()])
     /* Задержка для анимации */
-    await delay(500)
+    await delay(SHORT_DELAY_IN_MS)
     /* Если голова есть, то меняем ей цвет */
     if (item) {
       item.state = ElementStates.Default

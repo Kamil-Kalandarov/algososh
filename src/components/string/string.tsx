@@ -7,7 +7,7 @@ import { Circle } from "../ui/circle/circle";
 import { TCircle } from "../../types/dataTypes";
 import { ElementStates } from "../../types/element-states";
 import { delay } from "../../utils/utils";
-
+import { DELAY_IN_MS } from "../../constants/delays";
 
 export const StringComponent: FC = () => {
 
@@ -42,7 +42,7 @@ export const StringComponent: FC = () => {
       while (leftSide < rightSide) {
         lettersArray[leftSide].state = ElementStates.Changing
         lettersArray[rightSide].state = ElementStates.Changing
-      await delay(1000)
+      await delay(DELAY_IN_MS)
         swap(lettersArray, leftSide, rightSide)
         lettersArray[leftSide].state = ElementStates.Modified
         lettersArray[rightSide].state = ElementStates.Modified

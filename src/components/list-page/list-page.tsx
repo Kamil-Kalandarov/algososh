@@ -9,6 +9,7 @@ import { TCircle } from "../../types/dataTypes"
 import { ElementStates } from "../../types/element-states"
 import { LinkedList } from "./utils"
 import { delay } from "../../utils/utils"
+import { DELAY_IN_MS } from "../../constants/delays"
 
 export const ListPage: FC = () => {
   const [inputValue, setInputValue] = useState<string>('')
@@ -71,7 +72,7 @@ export const ListPage: FC = () => {
       /* Установить флаг начала операции AddToHead */
       setAddToHeadOperation(true)
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Вызов метода prepend и передача ему в аргументы значение инпута */
       list.prepend(inputValue)
       /* установить флаг завершения операции AddToHead */
@@ -83,7 +84,7 @@ export const ListPage: FC = () => {
       /* обновление стейта */
       setListArray(newArray)
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Присовение цвета элементу по 0 индесом элементу */
       newArray[0].color = ElementStates.Default
       /* обновление стейта */
@@ -109,7 +110,7 @@ export const ListPage: FC = () => {
       /* Установить флаг начала операции AddToTail */
       setAddToTailOperation(true)
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Вызов метода append и передача ему в аргументы значение инпута */
       list.append(inputValue)
       /* установить флаг завершения операции AddToTail */
@@ -121,7 +122,7 @@ export const ListPage: FC = () => {
       /* обновление стейта */
       setListArray(newArr)
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Присовение цвета последнему элементу */
       newArr[newArr.length - 1].color = ElementStates.Default
       /* Обновление стейта */
@@ -156,7 +157,7 @@ export const ListPage: FC = () => {
       /* Обновление стейта */
       setListArray(newArr)
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Вызов метода удаления элемента deleteHead */
       list.deleteHead()
       /* Установить флаг окончания операции deleteHead */
@@ -191,7 +192,7 @@ export const ListPage: FC = () => {
       /* Обновление стейта */
       setListArray(newArr)
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Вызов метода удаления элемента deleteTail */
       list.deleteTail()
       /* Установить флаг окончания операции deleteTail */
@@ -222,7 +223,7 @@ export const ListPage: FC = () => {
       for (let i = 0; i <= Number(inputIndex); i++) {
         setInputValueindex(i)
         /* Задержка для анимации */
-        await delay(500 )
+        await delay(DELAY_IN_MS)
         /* Если индекс текущего элемент меньше значения индекса в инпуте, то присваивать ему зеленый цвет */
         if (i < Number(inputIndex)) {
           newArr[i].color = ElementStates.Changing
@@ -241,7 +242,7 @@ export const ListPage: FC = () => {
       /* Обновить стейт */
       setListArray(finalArr)
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Изменить цвет элемента */
       finalArr[Number(inputIndex)].color = ElementStates.Default
       /* Обновить стейт */
@@ -271,11 +272,11 @@ export const ListPage: FC = () => {
       делать задержку для анимации и присваивать элементу фиолетовый цвет и обновлять состояние стейта */
       for (let i = 0; i <= Number(inputIndex); i++) {
         newArr[i].color = ElementStates.Changing
-        await delay(500 )
+        await delay(DELAY_IN_MS)
         setListArray([...newArr])
       }
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Присвоение значения для маленького кружочка */
       setSmalCircle(newArr[Number(inputIndex)].value)
       newArr[Number(inputIndex)].value = ''
@@ -283,7 +284,7 @@ export const ListPage: FC = () => {
       newArr[Number(inputIndex)].color = ElementStates.Default
       setInputValueindex(Number(inputIndex))
       /* Задержка для анимации */
-      await delay(500 )
+      await delay(DELAY_IN_MS)
       /* Удаление элемента методом deleteByIndex */
       list.deleteByIndex(Number(inputIndex))
       /* Обновление стейта с элементами */
@@ -417,7 +418,8 @@ export const ListPage: FC = () => {
                 <Input 
                   placeholder='Введите индекс'
                   value={inputIndex}
-                  maxLength={4}
+                  maxLength={2}
+                  max={11}
                   isLimitText={true} 
                   onChange={handleInputIndex}
                   type='number'
@@ -436,7 +438,7 @@ export const ListPage: FC = () => {
                   text='Удалить по индексу'
                   extraClass={styles.list__button}
                   onClick={deleteByindex}
-                  disabled={listArray.length === 0 || !inputIndex || isAddingToTail || isAddingToHead || 
+                  disabled={listArray.length === 0 || Number(inputIndex) > 11 || !inputIndex || isAddingToTail || isAddingToHead || 
                     isDeletingHead || isDeletingTail || isAddingByIndex}
                   isLoader={isDeletingByIndex}
                 />

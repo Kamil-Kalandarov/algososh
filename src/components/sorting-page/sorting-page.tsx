@@ -8,6 +8,7 @@ import { ElementStates } from "../../types/element-states";
 import { Column } from "../ui/column/column";
 import { delay } from "../../utils/utils";
 import { TColumn } from "../../types/dataTypes";
+import { DELAY_IN_MS } from "../../constants/delays";
 
 export const SortingPage: FC = () => {
 
@@ -49,7 +50,7 @@ export const SortingPage: FC = () => {
         randomArr[i].color = ElementStates.Changing
         randomArr[j].color = ElementStates.Changing
         setColumns([...randomArr])
-      await delay(1000)
+      await delay(DELAY_IN_MS)
       if(randomArr[j].number < randomArr[minIndex].number) {
         minIndex = j
         }
@@ -74,7 +75,7 @@ export const SortingPage: FC = () => {
         randomArr[i].color = ElementStates.Changing
         randomArr[j].color = ElementStates.Changing
         setColumns([...randomArr])
-      await delay(1000)
+      await delay(DELAY_IN_MS)
       if(randomArr[j].number > randomArr[minIndex].number) {
         minIndex = j
         }
@@ -134,7 +135,7 @@ export const SortingPage: FC = () => {
           randomArr[i].color = ElementStates.Default
           randomArr[randomArr.length -  k].color = ElementStates.Modified
         } 
-        await delay(1000)
+        await delay(DELAY_IN_MS)
         setColumns([...randomArr])
     }
     /* Передача последнего Modified после вполнения цикла */
@@ -176,7 +177,7 @@ export const SortingPage: FC = () => {
           randomArr[i].color = ElementStates.Default
           randomArr[randomArr.length -  k].color = ElementStates.Modified
         } 
-        await delay(1000)
+        await delay(DELAY_IN_MS)
         setColumns([...randomArr])
     }
     /* Передача последнего Modified после вполнения цикла */

@@ -5,6 +5,7 @@ import { Input } from "../ui/input/input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Circle } from "../ui/circle/circle";
 import { delay } from "../../utils/utils";
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
 export const FibonacciPage: FC = () => {
 
@@ -16,7 +17,7 @@ export const FibonacciPage: FC = () => {
 
   /* изменение значений инпута */
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
-    const value: number = Number(e.currentTarget.value)
+    const value: number = parseInt(e.currentTarget.value)
     setInputValue(value)
   };
 
@@ -29,7 +30,7 @@ export const FibonacciPage: FC = () => {
         setResult([...fibonacciArray])
       } else {
         fibonacciArray.push(fibonacciArray[i - 2] + fibonacciArray[i - 1])
-        await delay(500)
+        await delay(SHORT_DELAY_IN_MS)
         setResult([...fibonacciArray])
       }
     }

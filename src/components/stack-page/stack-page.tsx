@@ -8,6 +8,7 @@ import { Stack } from "./utils";
 import { ElementStates } from "../../types/element-states";
 import { Circle } from "../ui/circle/circle";
 import { delay } from "../../utils/utils";
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
 export const StackPage: FC = () => {
 
@@ -37,7 +38,7 @@ export const StackPage: FC = () => {
     stackClass.push({value: inputValue, state: ElementStates.Changing})
     setStack([...stackClass.getElements()])
     setInputValue('')
-    await delay(500)
+    await delay(SHORT_DELAY_IN_MS)
     const value = stackClass.peak()
     if(value) {
       value.state = ElementStates.Default
@@ -53,7 +54,7 @@ export const StackPage: FC = () => {
       value.state = ElementStates.Changing
       setStack([...stackClass.getElements()])
     } 
-    await delay(500)
+    await delay(SHORT_DELAY_IN_MS)
     stackClass.pop()
     setStack([...stackClass.getElements()])
   };

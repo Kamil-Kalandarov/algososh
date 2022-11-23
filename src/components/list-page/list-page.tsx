@@ -209,7 +209,7 @@ export const ListPage: FC = () => {
   /* Функция добавления элемента по индексу */
   const addByindex = async () => {
     /* Если есть значение инпута, то */
-    if (Number(inputIndex) < 11 && list.listLength < 12) {
+    if (Number(inputIndex) < 11 /* && Number(inputIndex) <= list.listLength */ && list.listLength < 12) {
       /* Поставить тип операции AddByindex */
       setIsAddingByIndex(true)
       /* Включить лоадер */
@@ -430,7 +430,7 @@ export const ListPage: FC = () => {
                   text='Добавить по индексу'
                   extraClass={styles.list__button}
                   onClick={addByindex}
-                  disabled={listArray.length === 12 || !listArray || !inputValue || !inputIndex || isAddingToTail || 
+                  disabled={listArray.length === 12 || Number(inputIndex) > listArray.length - 1 || !listArray || !inputValue || !inputIndex || isAddingToTail || 
                     isAddingToHead || isDeletingHead || isDeletingTail || isDeletingByIndex}
                   isLoader={isAddingByIndex}
                 />
@@ -438,7 +438,7 @@ export const ListPage: FC = () => {
                   text='Удалить по индексу'
                   extraClass={styles.list__button}
                   onClick={deleteByindex}
-                  disabled={listArray.length === 0 || Number(inputIndex) > 11 || !inputIndex || isAddingToTail || isAddingToHead || 
+                  disabled={listArray.length === 0 || Number(inputIndex) > listArray.length - 1 || !inputIndex || isAddingToTail || isAddingToHead || 
                     isDeletingHead || isDeletingTail || isAddingByIndex}
                   isLoader={isDeletingByIndex}
                 />

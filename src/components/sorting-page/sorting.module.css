@@ -1,0 +1,59 @@
+.sorting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+
+.sorting__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 52px;
+}
+
+.sorting__radioButtonsContainer {
+  display: flex;
+  gap: 40px;
+}
+
+.sorting__buttonsContainer {
+  display: flex;
+  gap: 12px;
+  padding-right: 28px;
+}
+
+.sorting__columnsList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .sorting__columnItem {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+} */
+  

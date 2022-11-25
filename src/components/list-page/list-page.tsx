@@ -209,7 +209,7 @@ export const ListPage: FC = () => {
   /* Функция добавления элемента по индексу */
   const addByindex = async () => {
     /* Если есть значение инпута, то */
-    if (Number(inputIndex) < 11 /* && Number(inputIndex) <= list.listLength */ && list.listLength < 12) {
+    if (Number(inputIndex) < 11 && list.listLength < 12) {
       /* Поставить тип операции AddByindex */
       setIsAddingByIndex(true)
       /* Включить лоадер */

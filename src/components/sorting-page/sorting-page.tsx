@@ -14,10 +14,6 @@ export const SortingPage: FC = () => {
 
   const [sortType, setSortType] = useState<string>('Выбор');
   const [sortDirection, setSortDirection] = useState<Direction>(Direction.Ascending);
-/*   const [SelectionAscensing, setSelectionAscensing] = useState<boolean>(false);
-  const [SelectionDescending, setSelectionDescending] = useState<boolean>(false);
-  const [bubbleAscensing, setBubbleAscensing] = useState<boolean>(false);
-  const [bubbleDescending, setBubbleDescending] = useState<boolean>(false); */
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [columns, setColumns] = useState<TColumn[]>([]);
 

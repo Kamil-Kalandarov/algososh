@@ -5,10 +5,11 @@ describe('Test swap function', () => {
     it('render with even numbers', async() => {
         const string = '1234'
         const reversedString = '4321'
-        const setLoading = jest.fn()
         const setResult = jest.fn()
-        jest.setTimeout(1000)
-        reversArray(string, setLoading, setResult)
-        expect(setResult).toHaveBeenCalledWith(reversedString, ElementStates.Modified)
+        const setLoading = jest.fn()
+        await reversArray(string.split('')
+        .map((letter => ({ value: letter, state: ElementStates.Default }))), setResult, setLoading );
+        expect(setResult).toHaveBeenCalledWith(reversedString.split('')
+        .map((letter => ({ value: letter, state: ElementStates.Modified }))));
     })
 });

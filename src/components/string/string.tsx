@@ -11,14 +11,10 @@ import { DELAY_IN_MS } from "../../constants/delays";
 import { swap } from "./utils"
 
 export const reversArray = async(
-  string: string,
+  lettersArray: TCircle[],
   loaderSetter: Dispatch<SetStateAction<boolean>>,  
   resultSetter: Dispatch<SetStateAction<TCircle[]>>) => {
   loaderSetter(true)
-  const lettersArray: TCircle[] = []
-  string.split('').forEach((letter) => {
-    lettersArray.push({ value: letter, state: ElementStates.Default })
-  })
   resultSetter(lettersArray)
     let leftSide = 0
     let rightSide = lettersArray.length - 1
@@ -87,7 +83,8 @@ export const StringComponent: FC = () => {
   /* Добавление преобразованного результата инпута в массив */
   const addLetters = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
-    reversArray(inputValue, setIsLoading, setResult)
+    const lettersArray = inputValue.split('').map((letter => ({ value: letter, state: ElementStates.Default })));
+    reversArray(lettersArray, setIsLoading, setResult)
     setValue('')
   };
 

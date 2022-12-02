@@ -10,8 +10,10 @@ import { delay } from "../../utils/utils";
 import { DELAY_IN_MS } from "../../constants/delays";
 import { swap } from "./utils"
 
+/* Приведине значения инпута к массиву и логика перестановки элементов */
 export const reversArray = async(
   lettersArray: TCircle[],
+  delayTime: number,
   loaderSetter: Dispatch<SetStateAction<boolean>>,  
   resultSetter: Dispatch<SetStateAction<TCircle[]>>) => {
   loaderSetter(true)
@@ -21,7 +23,7 @@ export const reversArray = async(
     while (leftSide < rightSide) {
       lettersArray[leftSide].state = ElementStates.Changing
       lettersArray[rightSide].state = ElementStates.Changing
-    await delay(DELAY_IN_MS)
+    await delay(delayTime)
       swap(lettersArray, leftSide, rightSide)
       lettersArray[leftSide].state = ElementStates.Modified
       lettersArray[rightSide].state = ElementStates.Modified
@@ -51,40 +53,12 @@ export const StringComponent: FC = () => {
     setValue(value)
   }
 
-  /* Приведине значения инпута к массиву и логика перестановки элементов */
-  /* const reversArray = async(string: string) => {
-    setIsLoading(true)
-    const lettersArray: TCircle[] = []
-    string.split('').forEach((letter) => {
-      lettersArray.push({ value: letter, state: ElementStates.Default })
-    })
-    setResult(lettersArray)
-      let leftSide = 0
-      let rightSide = lettersArray.length - 1
-      while (leftSide < rightSide) {
-        lettersArray[leftSide].state = ElementStates.Changing
-        lettersArray[rightSide].state = ElementStates.Changing
-      await delay(DELAY_IN_MS)
-        swap(lettersArray, leftSide, rightSide)
-        lettersArray[leftSide].state = ElementStates.Modified
-        lettersArray[rightSide].state = ElementStates.Modified
-        leftSide ++
-        rightSide --
-        lettersArray[leftSide].state = ElementStates.Changing
-        lettersArray[rightSide].state = ElementStates.Changing
-        setResult([...lettersArray])
-    }
-    lettersArray[leftSide].state = ElementStates.Modified
-    lettersArray[rightSide].state = ElementStates.Modified
-    setResult([...lettersArray]) 
-    setIsLoading(false)
-  }; */
-
   /* Добавление преобразованного результата инпута в массив */
   const addLetters = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
-    const lettersArray = inputValue.split('').map((letter => ({ value: letter, state: ElementStates.Default })));
-    reversArray(lettersArray, setIsLoading, setResult)
+    const lettersArray = inputValue.split('')
+    .map((letter => ({ value: letter, state: ElementStates.Default })));
+    reversArray(lettersArray, DELAY_IN_MS, setIsLoading, setResult)
     setValue('')
   };
 

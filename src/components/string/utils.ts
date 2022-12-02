@@ -18,22 +18,3 @@ export const swap = (arr: TCircle[], firstIndex: number, secondIndex: number) =>
     return array
 } */
 
-/* describe('Test swap function', () => {
-    it('render with even numbers', async() => {
-        const string = '1, 2, 3, 4'
-        const reversedString = '4, 3, 2, 1'
-        const setLoading = jest.fn()
-        const setResult = jest.fn()
-        await reversArray(
-            string.split('').map((letter) => {
-                return {
-                    letter, state: ElementStates.Default
-                }
-            }),setLoading, setResult)
-        expect(setResult).toHaveBeenLastCalledWith(reversedString.split('').map((element) => {
-            return { 
-                element, state: ElementStates.Modified 
-            }
-        }))
-    })
-}); */

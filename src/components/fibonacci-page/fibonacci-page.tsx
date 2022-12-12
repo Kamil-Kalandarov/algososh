@@ -59,6 +59,7 @@ export const FibonacciPage: FC = () => {
       <div className={styles.fibonacci}>
         <form className={styles.fibonacci__form} onSubmit={addNumbers}>
           <Input 
+            data-testid='fibonacciInputTest'
             type='number'
             max={19}
             maxLength={19} 
@@ -67,6 +68,7 @@ export const FibonacciPage: FC = () => {
             onChange={handleChange}
           />
           <Button 
+            data-testid='fibonacciTestBtn'
             extraClass={styles.fibonacci__button}
             text="Рассчитать"
             type='submit'
@@ -74,7 +76,7 @@ export const FibonacciPage: FC = () => {
             disabled={!inputValue || inputValue > 19}
           />
         </form>
-        <ul className={styles.fibonacci__circlesContainer}>
+        <ul className={styles.fibonacci__circlesContainer} data-testid='circleContainerTest'>
           {elements}
         </ul>
       </div>

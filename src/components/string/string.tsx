@@ -77,11 +77,12 @@ export const StringComponent: FC = () => {
         <form className={styles.string__form} onSubmit={addLetters}>
           <Input 
             maxLength={11} 
-            isLimitText={true} 
+            isLimitText={true}  
             value={inputValue}
             onChange={handleChange}
           />
           <Button 
+            extraClass="string__button"
             text={"Развернуть"} 
             type='submit'
             disabled={!inputValue}

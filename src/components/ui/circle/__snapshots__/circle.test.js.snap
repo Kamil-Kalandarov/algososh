@@ -11,6 +11,7 @@ exports[`text Circle component render circle with head 1`] = `
   </div>
   <div
     className="circle   default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -36,6 +37,7 @@ exports[`text Circle component render circle with index 1`] = `
   </div>
   <div
     className="circle   default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -59,6 +61,7 @@ exports[`text Circle component render circle with letters 1`] = `
   />
   <div
     className="circle   default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -84,6 +87,7 @@ exports[`text Circle component render circle with props "isSmall" 1`] = `
   />
   <div
     className="circle  small default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -107,6 +111,7 @@ exports[`text Circle component render circle with props "isSmall" 2`] = `
   />
   <div
     className="circle   default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -130,6 +135,7 @@ exports[`text Circle component render circle with props "isSmall" 3`] = `
   />
   <div
     className="circle   changing"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -153,6 +159,7 @@ exports[`text Circle component render circle with props "isSmall" 4`] = `
   />
   <div
     className="circle   modified"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -182,6 +189,7 @@ exports[`text Circle component render circle with react element in head 1`] = `
       />
       <div
         className="circle   default"
+        data-testid="circleTest"
       >
         <p
           className="text text_type_circle text_color_input letter"
@@ -199,6 +207,7 @@ exports[`text Circle component render circle with react element in head 1`] = `
   </div>
   <div
     className="circle   default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -228,6 +237,7 @@ exports[`text Circle component render circle with react element in tail 1`] = `
       />
       <div
         className="circle   default"
+        data-testid="circleTest"
       >
         <p
           className="text text_type_circle text_color_input letter"
@@ -245,6 +255,7 @@ exports[`text Circle component render circle with react element in tail 1`] = `
   </div>
   <div
     className="circle   default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -268,6 +279,7 @@ exports[`text Circle component render circle with tail 1`] = `
   />
   <div
     className="circle   default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"
@@ -293,6 +305,7 @@ exports[`text Circle component render circle without letters 1`] = `
   />
   <div
     className="circle   default"
+    data-testid="circleTest"
   >
     <p
       className="text text_type_circle text_color_input letter"

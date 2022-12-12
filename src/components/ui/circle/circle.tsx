@@ -25,28 +25,21 @@ export const Circle: React.FC<CircleProps> = ({
   return (
     <div className={`${styles.content} ${extraClass}`}>
       <div
-        className={`text text_type_input text_color_input mb-4 ${
-          styles.absolute
-        } ${styles.head} ${
-          styles[typeof head === "string" ? "string" : "element"]
-        }`}
-      >
+        data-testid='headTest'
+        className={`text text_type_input text_color_input mb-4 
+        ${styles.absolute} ${styles.head} 
+        ${styles[typeof head === "string" ? "string" : "element"]}`}>
         {head}
       </div>
-      <div
-        className={`${styles.circle}  ${isSmall ? styles.small : ""} ${
-          styles[state]
-        }`}
+      <div 
+        data-testid='circleTest' 
+        className={`${styles.circle}  ${isSmall ? styles.small : ""} ${styles[state]}`}
       >
-        <p
-          className={`text text_type_circle text_color_input ${styles.letter}`}
-        >
-          {letter}
-        </p>
+        <p className={`text text_type_circle text_color_input ${styles.letter}`}>{letter}</p>
       </div>
       <p
-        className={`text text_type_input text_color_input mt-4 ${styles.absolute} ${styles.index}`}
-      >
+        data-testid='indexTest'
+        className={`text text_type_input text_color_input mt-4 ${styles.absolute} ${styles.index}`}>
         {index?.toString()}
       </p>
       <div

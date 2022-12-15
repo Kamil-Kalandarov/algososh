@@ -151,12 +151,14 @@ export const QueuePage: FC = () => {
       <div className={styles.queue}>
         <form className={styles.queue__form} onSubmit={handleSubmit}>
           <Input 
+            data-testid='queueInputTest'
             maxLength={4} 
             isLimitText={true} 
             value={inputValue}
             onChange={handleChange}
           />
           <Button 
+            data-testid='queueTestAddBtn'
             text='Добавить'
             type='submit'
             onClick={addElement}
@@ -164,6 +166,7 @@ export const QueuePage: FC = () => {
             isLoader={isAdding}
           />
           <Button 
+            data-testid='queueTestDeleteBtn'
             text='Удалить'
             type='submit'
             onClick={deleteElement}
@@ -172,6 +175,7 @@ export const QueuePage: FC = () => {
           />
           <div className={styles.queue__lastBtn}>
             <Button 
+              data-testid='queueTestClearBtn'
               text='Очистить'
               type='submit'
               onClick={deleteAllElements}

@@ -93,12 +93,14 @@ export const StackPage: FC = () => {
       <div className={styles.stack}>
         <form className={styles.stack__form} onSubmit={handleSubmit}>
           <Input 
+            data-testid='stackInputTest'
             maxLength={4} 
             isLimitText={true} 
             value={inputValue}
             onChange={handleChange}
           />
           <Button 
+            data-testid='stackTestAddBtn'
             text='Развернуть'
             type='submit'
             onClick={pushElement}
@@ -106,6 +108,7 @@ export const StackPage: FC = () => {
             disabled={!inputValue || stack.length >= 20}
           />
           <Button 
+            data-testid='stackTestDeleteBtn'
             text='Удалить'
             type='submit'
             onClick={popElement}
@@ -113,6 +116,7 @@ export const StackPage: FC = () => {
           />
           <div className={styles.stack__lastBtn}>
             <Button 
+              data-testid='stackTestClearBtn'
               text='Очистить'
               type='submit'
               onClick={deleteAllElements}

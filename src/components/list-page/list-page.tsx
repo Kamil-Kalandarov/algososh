@@ -330,7 +330,7 @@ export const ListPage: FC = () => {
     <li className={styles.list__listItem} key={index}>
       {isLoading === true && (addToHeadOperation === true || addToTailOperation === true || addByindexOperation === true) 
         && index === inputValueindex &&
-        <div className={styles.list__smallTopElement}>
+        <div className={styles.list__smallTopElement} data-testid='circleSmallTest'>
           <Circle 
             isSmall={true} 
             letter={inputValue} 
@@ -339,7 +339,7 @@ export const ListPage: FC = () => {
         </div>
       }
       {listArray.length - 1 !== index &&
-        <div className={styles.list__arrow}>
+        <div className={styles.list__arrow} data-testid='arrowTest'>
           <ArrowIcon />
         </div>}
       <div className={styles.list__element}>
@@ -373,6 +373,7 @@ export const ListPage: FC = () => {
             <form className={styles.list__form} onSubmit={handleSubmit}>
               <div className={styles.list__inputContainer}>
                 <Input 
+                  data-testid='listInputValueTest'
                   placeholder='Введите занчение'
                   maxLength={4}
                   isLimitText={true} 
@@ -382,6 +383,7 @@ export const ListPage: FC = () => {
               </div>
               <div className={styles.list__btnsContainer}>
                 <Button 
+                  data-testid='listAddToHeadBtn'
                   text='Добавить в head' 
                   onClick={addToHead} 
                   disabled={listArray.length === 12 || !inputValue || isAddingToTail || isAddingByIndex || 
@@ -389,6 +391,7 @@ export const ListPage: FC = () => {
                   isLoader={isAddingToHead}
                 />
                 <Button 
+                  data-testid='listAddToTailBtn'
                   text='Добавить в tail'   
                   onClick={addToTail}
                   disabled={listArray.length === 12 || !inputValue || isAddingToHead || isAddingByIndex || 
@@ -396,6 +399,7 @@ export const ListPage: FC = () => {
                   isLoader={isAddingToTail}
                 />
                 <Button 
+                  data-testid='listDeleteFromHeadBtn'
                   text='Удалить из head' 
                   onClick={deleteHead} 
                   disabled={isAddingToHead || listArray.length === 0 || isAddingByIndex || isAddingToTail || 
@@ -403,6 +407,7 @@ export const ListPage: FC = () => {
                   isLoader={isDeletingHead}
                 />
                 <Button 
+                  data-testid='listDeleteFromTailBtn'
                   text='Удалить из tail' 
                   onClick={deleteTail} 
                   disabled={isAddingToHead || listArray.length === 0 || isAddingByIndex || isAddingToTail || 
@@ -416,6 +421,7 @@ export const ListPage: FC = () => {
             <form className={styles.list__form} onSubmit={handleSubmit}>
               <div className={styles.list__inputContainer}>
                 <Input 
+                  data-testid='listInputIndexTest'
                   placeholder='Введите индекс'
                   value={inputIndex}
                   maxLength={2}
@@ -427,18 +433,20 @@ export const ListPage: FC = () => {
               </div>
               <div className={styles.list__btnsContainer}>
                 <Button 
+                  data-testid='listAddByIndexBtn'
                   text='Добавить по индексу'
                   extraClass={styles.list__button}
                   onClick={addByindex}
-                  disabled={listArray.length === 12 || Number(inputIndex) > listArray.length - 1 || !listArray || !inputValue || !inputIndex || isAddingToTail || 
+                  disabled={listArray.length === 12 || Number(inputIndex) < 0 || Number(inputIndex) > listArray.length - 1 || !listArray || !inputValue || !inputIndex || isAddingToTail || 
                     isAddingToHead || isDeletingHead || isDeletingTail || isDeletingByIndex}
                   isLoader={isAddingByIndex}
                 />
                 <Button 
+                  data-testid='listDeleteByIndexBtn'
                   text='Удалить по индексу'
                   extraClass={styles.list__button}
                   onClick={deleteByindex}
-                  disabled={listArray.length === 0 || Number(inputIndex) > listArray.length - 1 || !inputIndex || isAddingToTail || isAddingToHead || 
+                  disabled={listArray.length === 0 || Number(inputIndex) < 0 || Number(inputIndex) > listArray.length - 1 || !inputIndex || isAddingToTail || isAddingToHead || 
                     isDeletingHead || isDeletingTail || isAddingByIndex}
                   isLoader={isDeletingByIndex}
                 />
@@ -446,9 +454,9 @@ export const ListPage: FC = () => {
             </form>
           </div>
         </div>
-        <div className={styles.list__elementsContainer}>
+        <ul className={styles.list__elementsContainer}>
           {elements}
-        </div>
+        </ul>
       </div>
     </SolutionLayout>
   )

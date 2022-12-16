@@ -1,0 +1,386 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`text Circle component render circle with head 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        string"
+    data-testid="headTest"
+  >
+    test simbol
+  </div>
+  <div
+    className="circle   default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with index 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        string"
+    data-testid="headTest"
+  >
+    test simbol
+  </div>
+  <div
+    className="circle   default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with letters 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  />
+  <div
+    className="circle   default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    >
+      test simbol
+    </p>
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with props "isSmall" 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  />
+  <div
+    className="circle  small default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with props "isSmall" 2`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  />
+  <div
+    className="circle   default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with props "isSmall" 3`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  />
+  <div
+    className="circle   changing"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with props "isSmall" 4`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  />
+  <div
+    className="circle   modified"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with react element in head 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  >
+    <div
+      className="content "
+    >
+      <div
+        className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+        data-testid="headTest"
+      />
+      <div
+        className="circle   default"
+        data-testid="circleTest"
+      >
+        <p
+          className="text text_type_circle text_color_input letter"
+        >
+          1
+        </p>
+      </div>
+      <p
+        className="text text_type_input text_color_input mt-4 absolute index"
+        data-testid="indexTest"
+      />
+      <div
+        className="text text_type_input text_color_input mt-4 absolute tail30 element"
+        data-testid="tailTest"
+      />
+    </div>
+  </div>
+  <div
+    className="circle   default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with react element in tail 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  >
+    <div
+      className="content "
+    >
+      <div
+        className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+        data-testid="headTest"
+      />
+      <div
+        className="circle   default"
+        data-testid="circleTest"
+      >
+        <p
+          className="text text_type_circle text_color_input letter"
+        >
+          1
+        </p>
+      </div>
+      <p
+        className="text text_type_input text_color_input mt-4 absolute index"
+        data-testid="indexTest"
+      />
+      <div
+        className="text text_type_input text_color_input mt-4 absolute tail30 element"
+        data-testid="tailTest"
+      />
+    </div>
+  </div>
+  <div
+    className="circle   default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;
+
+exports[`text Circle component render circle with tail 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  />
+  <div
+    className="circle   default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 string"
+    data-testid="tailTest"
+  >
+    test simbol
+  </div>
+</div>
+`;
+
+exports[`text Circle component render circle without letters 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
+  />
+  <div
+    className="circle   default"
+    data-testid="circleTest"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
+  />
+</div>
+`;

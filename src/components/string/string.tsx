@@ -1,4 +1,4 @@
-import React, { FC, useState, FormEvent } from "react";
+import React, { FC, useState, FormEvent, Dispatch, SetStateAction } from "react";
 import styles from "./string.module.css";
 import { Button } from "../ui/button/button";
 import { Input } from "../ui/input/input";
@@ -8,6 +8,36 @@ import { TCircle } from "../../types/dataTypes";
 import { ElementStates } from "../../types/element-states";
 import { delay } from "../../utils/utils";
 import { DELAY_IN_MS } from "../../constants/delays";
+import { swap } from "./utils"
+
+/* Приведине значения инпута к массиву и логика перестановки элементов */
+export const reversArray = async(
+  lettersArray: TCircle[],
+  delayTime: number,
+  loaderSetter: Dispatch<SetStateAction<boolean>>,  
+  resultSetter: Dispatch<SetStateAction<TCircle[]>>) => {
+  loaderSetter(true)
+  resultSetter(lettersArray)
+    let leftSide = 0
+    let rightSide = lettersArray.length - 1
+    while (leftSide < rightSide) {
+      lettersArray[leftSide].state = ElementStates.Changing
+      lettersArray[rightSide].state = ElementStates.Changing
+    await delay(delayTime)
+      swap(lettersArray, leftSide, rightSide)
+      lettersArray[leftSide].state = ElementStates.Modified
+      lettersArray[rightSide].state = ElementStates.Modified
+      leftSide ++
+      rightSide --
+      lettersArray[leftSide].state = ElementStates.Changing
+      lettersArray[rightSide].state = ElementStates.Changing
+      resultSetter([...lettersArray])
+  }
+  lettersArray[leftSide].state = ElementStates.Modified
+  lettersArray[rightSide].state = ElementStates.Modified
+  resultSetter([...lettersArray]) 
+  loaderSetter(false)
+};
 
 export const StringComponent: FC = () => {
 
@@ -22,46 +52,13 @@ export const StringComponent: FC = () => {
     const value = e.currentTarget.value
     setValue(value)
   }
-  /* Рокировка элемнтов */
-  const swap = (arr: TCircle[], firstIndex: number, secondIndex: number) => {
-    const temp = arr[firstIndex];
-    arr[firstIndex] = arr[secondIndex];
-    arr[secondIndex] = temp;
-  };
-
-  /* Приведине значения инпута к массиву и логика перестановки элементов */
-  const reversArray = async(string: string) => {
-    setIsLoading(true)
-    const lettersArray: TCircle[] = []
-    string.split('').forEach((letter) => {
-      lettersArray.push({ value: letter, state: ElementStates.Default })
-    })
-    setResult(lettersArray)
-      let leftSide = 0
-      let rightSide = lettersArray.length - 1
-      while (leftSide < rightSide) {
-        lettersArray[leftSide].state = ElementStates.Changing
-        lettersArray[rightSide].state = ElementStates.Changing
-      await delay(DELAY_IN_MS)
-        swap(lettersArray, leftSide, rightSide)
-        lettersArray[leftSide].state = ElementStates.Modified
-        lettersArray[rightSide].state = ElementStates.Modified
-        leftSide ++
-        rightSide --
-        lettersArray[leftSide].state = ElementStates.Changing
-        lettersArray[rightSide].state = ElementStates.Changing
-        setResult([...lettersArray])
-    }
-    lettersArray[leftSide].state = ElementStates.Modified
-    lettersArray[rightSide].state = ElementStates.Modified
-    setResult([...lettersArray]) 
-    setIsLoading(false)
-  };
 
   /* Добавление преобразованного результата инпута в массив */
   const addLetters = (e: FormEvent<HTMLElement>) => {
     e.preventDefault()
-    reversArray(inputValue)
+    const lettersArray = inputValue.split('')
+    .map((letter => ({ value: letter, state: ElementStates.Default })));
+    reversArray(lettersArray, DELAY_IN_MS, setIsLoading, setResult)
     setValue('')
   };
 
@@ -79,12 +76,15 @@ export const StringComponent: FC = () => {
       <div className={styles.string}>
         <form className={styles.string__form} onSubmit={addLetters}>
           <Input 
+            data-testid='stringInputTest'
             maxLength={11} 
-            isLimitText={true} 
+            isLimitText={true}  
             value={inputValue}
             onChange={handleChange}
           />
           <Button 
+            data-testid='stringAddBtn'
+            extraClass="string__button"
             text={"Развернуть"} 
             type='submit'
             disabled={!inputValue}

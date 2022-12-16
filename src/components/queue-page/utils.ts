@@ -60,7 +60,7 @@ export class Queue<T> implements TQueue<T>{
     this.head = 0;
     this.tail = 0;
     this.length = 0;
-    this.container = [];
+    this.container = Array(this.size).fill(null);
   }
   
   isEmpty = () => {

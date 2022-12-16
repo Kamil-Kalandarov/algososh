@@ -5,7 +5,10 @@ exports[`text Circle component render circle with head 1`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head string"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        string"
+    data-testid="headTest"
   >
     test simbol
   </div>
@@ -19,9 +22,11 @@ exports[`text Circle component render circle with head 1`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -31,7 +36,10 @@ exports[`text Circle component render circle with index 1`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head string"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        string"
+    data-testid="headTest"
   >
     test simbol
   </div>
@@ -45,9 +53,11 @@ exports[`text Circle component render circle with index 1`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -57,7 +67,10 @@ exports[`text Circle component render circle with letters 1`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   />
   <div
     className="circle   default"
@@ -71,9 +84,11 @@ exports[`text Circle component render circle with letters 1`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -83,7 +98,10 @@ exports[`text Circle component render circle with props "isSmall" 1`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   />
   <div
     className="circle  small default"
@@ -95,9 +113,11 @@ exports[`text Circle component render circle with props "isSmall" 1`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -107,7 +127,10 @@ exports[`text Circle component render circle with props "isSmall" 2`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   />
   <div
     className="circle   default"
@@ -119,9 +142,11 @@ exports[`text Circle component render circle with props "isSmall" 2`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -131,7 +156,10 @@ exports[`text Circle component render circle with props "isSmall" 3`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   />
   <div
     className="circle   changing"
@@ -143,9 +171,11 @@ exports[`text Circle component render circle with props "isSmall" 3`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -155,7 +185,10 @@ exports[`text Circle component render circle with props "isSmall" 4`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   />
   <div
     className="circle   modified"
@@ -167,9 +200,11 @@ exports[`text Circle component render circle with props "isSmall" 4`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -179,13 +214,19 @@ exports[`text Circle component render circle with react element in head 1`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   >
     <div
       className="content "
     >
       <div
-        className="text text_type_input text_color_input mb-4 absolute head element"
+        className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+        data-testid="headTest"
       />
       <div
         className="circle   default"
@@ -199,9 +240,11 @@ exports[`text Circle component render circle with react element in head 1`] = `
       </div>
       <p
         className="text text_type_input text_color_input mt-4 absolute index"
+        data-testid="indexTest"
       />
       <div
         className="text text_type_input text_color_input mt-4 absolute tail30 element"
+        data-testid="tailTest"
       />
     </div>
   </div>
@@ -215,9 +258,11 @@ exports[`text Circle component render circle with react element in head 1`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -227,13 +272,19 @@ exports[`text Circle component render circle with react element in tail 1`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   >
     <div
       className="content "
     >
       <div
-        className="text text_type_input text_color_input mb-4 absolute head element"
+        className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+        data-testid="headTest"
       />
       <div
         className="circle   default"
@@ -247,9 +298,11 @@ exports[`text Circle component render circle with react element in tail 1`] = `
       </div>
       <p
         className="text text_type_input text_color_input mt-4 absolute index"
+        data-testid="indexTest"
       />
       <div
         className="text text_type_input text_color_input mt-4 absolute tail30 element"
+        data-testid="tailTest"
       />
     </div>
   </div>
@@ -263,9 +316,11 @@ exports[`text Circle component render circle with react element in tail 1`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;
@@ -275,7 +330,10 @@ exports[`text Circle component render circle with tail 1`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   />
   <div
     className="circle   default"
@@ -287,9 +345,11 @@ exports[`text Circle component render circle with tail 1`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 string"
+    data-testid="tailTest"
   >
     test simbol
   </div>
@@ -301,7 +361,10 @@ exports[`text Circle component render circle without letters 1`] = `
   className="content "
 >
   <div
-    className="text text_type_input text_color_input mb-4 absolute head element"
+    className="text text_type_input text_color_input mb-4 
+        absolute head 
+        element"
+    data-testid="headTest"
   />
   <div
     className="circle   default"
@@ -313,9 +376,11 @@ exports[`text Circle component render circle without letters 1`] = `
   </div>
   <p
     className="text text_type_input text_color_input mt-4 absolute index"
+    data-testid="indexTest"
   />
   <div
     className="text text_type_input text_color_input mt-4 absolute tail30 element"
+    data-testid="tailTest"
   />
 </div>
 `;

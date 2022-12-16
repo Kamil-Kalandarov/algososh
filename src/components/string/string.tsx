@@ -76,12 +76,14 @@ export const StringComponent: FC = () => {
       <div className={styles.string}>
         <form className={styles.string__form} onSubmit={addLetters}>
           <Input 
+            data-testid='stringInputTest'
             maxLength={11} 
             isLimitText={true}  
             value={inputValue}
             onChange={handleChange}
           />
           <Button 
+            data-testid='stringAddBtn'
             extraClass="string__button"
             text={"Развернуть"} 
             type='submit'

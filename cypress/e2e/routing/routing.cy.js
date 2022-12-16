@@ -1,6 +1,6 @@
 describe('Переход по роутам', () => {
      beforeEach(() => {
-        cy.visit('http://localhost:3000/')
+        cy.visit('')
     });
     it('Открытие главной страницы', () => {
         cy.contains('МБОУ АЛГОСОШ')

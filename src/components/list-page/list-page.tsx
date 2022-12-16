@@ -330,7 +330,7 @@ export const ListPage: FC = () => {
     <li className={styles.list__listItem} key={index}>
       {isLoading === true && (addToHeadOperation === true || addToTailOperation === true || addByindexOperation === true) 
         && index === inputValueindex &&
-        <div className={styles.list__smallTopElement} data-testid='circleSmall'>
+        <div className={styles.list__smallTopElement} data-testid='circleSmallTest'>
           <Circle 
             isSmall={true} 
             letter={inputValue} 

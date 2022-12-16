@@ -219,5 +219,5 @@ describe('Тест страницы List', () => {
         .should('have.length', 3)
         cy.get('@head').eq(0)
         cy.get('@deleteFromTailBtn').should('be.enabled')
-    })
+    });
 });
